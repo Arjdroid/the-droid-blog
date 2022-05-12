@@ -2,6 +2,6 @@
     integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script>
 
 {{- $opts := dict "minify" hugo.IsProduction -}}
-{{- $script := resources.Get "ts/main.ts" | js.Build $opts -}}
+{{- $script := resources.Get "ts/main.ts" -}}
 
 <script type="text/javascript" src="{{ $script.RelPermalink }}" defer></script>
