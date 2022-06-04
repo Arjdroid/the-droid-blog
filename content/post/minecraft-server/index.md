@@ -1,16 +1,18 @@
 +++
-draft = "true"
+draft = "false"
 author = "Arjdroid"
 title = "Hosting my own Minecraft Server with Docker on Linux"
-date = "2022-03-06"
+date = "2022-06-04"
 description = "An article that details how I hosted my own Minecraft Server using the Docker Engine."
 tags = [
     "minecraft",
     "gaming",
     "networking",
+    "homelab",
 ]
 categories = [
     "gaming",
+    "homelab",
     "networking",
 ]
 series = ["Minecraft"]
@@ -35,7 +37,7 @@ I wanted a better experience, with a more fine-tuned control over the settings a
  * Decent Specifications (to handle around 5 simultaneous players):
    * Atleast a dual core 64bit processor (any modern Intel Core CPU or AMD Ryzen CPU), or a Raspberry 4 (I'm not sure how well a 3 would hold up)
    * As much RAM as possible, atleast 4GB, more is preffered
-   * 8+ GB of *free storage*, because you want to take a LOT of backups of your world. Even though a really large world on its own may be at a max of 4GB if it's humongous, usually a couple hundred MB.
+   * 8+ GB of *free storage*, because you want to take a LOT of backups of your world. Even though a really large world on its own may be at a max of 4GB if it's humongous (you will never realistically reach this on your home server because if your world is going to be visited by hundreds or thousands over the span of years, you should really be looking at more professional solutions with better uptime / support), it will usually be a couple hundred MB.
  * Any Linux distro (Ubuntu Server is very usable or Raspberry Pi OS Lite if you're on a Pi)
  * A valid Minecraft Java Edition License (to be able to play on your server!)
  * A working brain
@@ -113,3 +115,40 @@ To verify that Docker Engine is installed correctly, run the __hello-world__ ima
 sudo docker run hello-world`
 
 It should give an output similar to this:
+
+```
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+```
+
+You can try out its advise to run a proper Ubuntu container as well with the command `docker run -it ubuntu bash` though keep in mind that this will eat up a couple of gigabytes of valuable storage which you may not have to spare because it creates a new docker container and it downloads the ubuntu image from docker's hub.
+
+> Tip:
+>
+> You can delete old containers and images that you are no longer using via the following commands:
+> To delete an old container you must first know the name or the id of the container
+> ```
+> $ sudo docker container ls -a
+> CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS   NAMES
+> aaa7aab55ac1   hello-world   "/hello"   5 minutes ago   Exited (0) 5 minutes ago           eager_haibt
+> 5f4294d34628   ubuntu        "bash"     4 minutes ago   Exited (0) 4 minutes ago           modest_banzai
+> ```
+> Suppose I want to delete

@@ -109,12 +109,12 @@ DefaultContentLanguage = "en"                   # Theme i18n support
         url = "p/rss"
         weight = -70
         pre = "rss"
-    [[menu.main]]
-        identifier = "podcast"
-        name = "Podcast"
-        url = "podcast"
-        weight = -60
-        pre = "podcast"
+#    [[menu.main]]
+#        identifier = "podcast"
+#        name = "Podcast"
+#        url = "podcast"
+#        weight = -60
+#        pre = "podcast"
 
 [related]
     includeNewer = true
