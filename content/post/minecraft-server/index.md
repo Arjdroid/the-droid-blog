@@ -20,7 +20,7 @@ aliases = ["Minecraft-Server"]
 image = "minecraft-server.png"
 +++
 
-> **Disclaimer**: This guide is a general overview, please also do additional research before following. If you plan on using this article as a guide for setting up your OWN minecraft (Java Edition) server, **PLEASE** read the entire article before going through with this process (It may help clear any doubts you have as well as ensure that you can go through with this process). Also, do remember that **I AM NOT RESPONSIBLE** for any damage that YOU may cause to yourself or your own hardware including, but not limited to: bricked devices, dead SD cards, thermonuclear war, or you getting fired because the alarm app failed. YOU are choosing to make these modifications, and I provide no guarantees of any sort.
+> **Disclaimer**: This guide is a general overview, please also do additional research before following. If you plan on using this article as a guide for setting up your OWN Minecraft (Java Edition) server, **PLEASE** read the entire article before going through with this process (It may help clear any doubts you have as well as ensure that you can go through with this process). Also, do remember that **I AM NOT RESPONSIBLE** for any damage that YOU may cause to yourself or your own hardware including, but not limited to: bricked devices, dead SD cards, thermonuclear war, or you getting fired because the alarm app failed. YOU are choosing to make these modifications, and I provide no guarantees of any sort.
 >
 > **This guide is slightly advanced and not recommended to those unfamiliar with using Linux**
 
@@ -29,7 +29,7 @@ image = "minecraft-server.png"
 The idea of running my own Minecraft server for me and my friends first came to me after watching countless online videos of people playing on Minecraft SMP's (Survival-Multi-Player), I wanted to be able to collaborate with my friends on glorious builds and finding boatloads of diamonds (to turn into netherite of course).
 
 There are a lot of different Minecraft server hosting options, some even being free of cost, but the free ones were not of the best experience, though one can't really complaing when it's free...
-
+minecraft
 I wanted a better experience, with a more fine-tuned control over the settings and have better server performance. Although this is much more advanced than using a paid, dedicated Minecraft hosting service.
 
 ## Prerequisites
@@ -116,7 +116,7 @@ sudo docker run hello-world`
 
 It should give an output similar to this:
 
-```
+```sh
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
 
@@ -139,16 +139,191 @@ For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
 
-You can try out its advise to run a proper Ubuntu container as well with the command `docker run -it ubuntu bash` though keep in mind that this will eat up a couple of gigabytes of valuable storage which you may not have to spare because it creates a new docker container and it downloads the ubuntu image from docker's hub.
+You can try out its advise to run a proper Ubuntu container as well with the command `docker run -it ubuntu bash` though keep in mind that this will eat up a couple of gigabytes of valuable storage which you may not have to spare (in case you have limited storage) because it creates a new docker container and it downloads the ubuntu image from docker's hub.
 
 > Tip:
 >
 > You can delete old containers and images that you are no longer using via the following commands:
 > To delete an old container you must first know the name or the id of the container
-> ```
+> ```sh
 > $ sudo docker container ls -a
 > CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS   NAMES
 > aaa7aab55ac1   hello-world   "/hello"   5 minutes ago   Exited (0) 5 minutes ago           eager_haibt
 > 5f4294d34628   ubuntu        "bash"     4 minutes ago   Exited (0) 4 minutes ago           modest_banzai
 > ```
-> Suppose I want to delete
+> Suppose I want to delete the ubuntu container for whatever reason,I simply have to execute the following command:
+> `sudo docker rmi aaa7aab55ac1`
+>
+> You can replace the container ID with that of whichever container you want to delete
+> For more information you should check out the Docker documentation at https://docs.docker.com/
+
+You should also install the `docker-compose-plugin` in case it was not already installed:
+```sh
+sudo apt install docker-compose-plugin
+```
+
+## Minecraft Server Docker Container Setup
+
+Now that we have docker up and running, we can explore different options as to how we go about setting up the Minecraft server docker container.
+
+I have found that the project at https://github.com/itzg/docker-minecraft-server is a great starting place and it is what I will be using in this guide.
+> You may want to use a different docker container such as https://github.com/itzg/docker-minecraft-bedrock-server in case you and your friends play on Minecraft: Bedrock Edition (Windows 10 Edition, and all the Mobile / Console editions are bedrock) although they won't be addressed much here.
+
+The first thing you may want to do is to download the latest image of itzg/minecraft-server [(available from Docker Hub)](https://hub.docker.com/r/itzg/minecraft-server) by doing
+```sh
+sudo docker pull itzg/minecraft-server:latest
+```
+Then you want to create a folder which will contain all of the configuration files specific to your server. Make sure to remember (write down / document) where you keep this folder as it is important for actually running the Minecraft server.
+
+Usually it is a good idea to keep that folder in your home directory which is at `/home/username` depending on your username. A universal shortcut for your current user's home directory is `~` and when you login to your user you are by default, in your home directory.
+
+Check your current directory (on Ubuntu's bash cmd your directory is listed next to your username but you can use the `pwd` command to see it as well)
+```sh
+user@minecraft-server:~/$ pwd
+/home/user/
+```
+Create your folder
+```sh
+mkdir minecraft-server
+```
+Check that the folder exists with the `ls` command
+```sh
+user@minecraft-server:~/$ ls
+minecraft-server
+```
+Then you can enter the directory
+```sh
+cd ./minecraft-server/
+```
+
+There are two ways (that I know of) to provision a docker container.
+1) Use a command with arguments for each configuration of the container
+2) Use a `docker-compose.yml` file
+
+There are advantages and disadvantages to both.
+
+For example, commands are very quick to use and are good for running one-off, disposable docker containers to test things. One example is
+```sh
+sudo docker run hello-world
+```
+It is a short, straightforward command to test the hello-world container. You can add arguments to do things like attach network ports and data volumes and specify executing specific commands. You can also put all those things in a shell script such as `docker-hello-world.sh` which will contain the command along with its arguments so that you can run it with just one executable.
+
+The main drawback however, at least in my opinion, is readability and editability. It can be hard to easily disect and understand a large, single command script with many arguments. Even a well made command like the one below still needs to use backslashes which could be easily messed up.
+```sh
+docker run -d \
+ --name jellyfin \
+ --user uid:gid \
+ --net=host \
+ --volume /path/to/config:/config \
+ --volume /path/to/cache:/cache \
+ --mount type=bind,source=/path/to/media,target=/media \
+ --restart=unless-stopped \
+ jellyfin/jellyfin
+```
+
+A much more elegant solution, in my opinion, is [Docker Compose](https://docs.docker.com/compose/) which allows you to put all of your arguments into a `docker-compose.yml` file (using the [YAML](https://en.wikipedia.org/wiki/YAML) file format which can be edited in plain text editors).
+
+Here is a `docker-compose.yml` file which does the same as the script above (running a basic [Jellyfin](https://jellyfin.org/) Docker container which is a self-hosted Streaming Service)
+```yml
+version: "3.5"
+services:
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    user: uid:gid
+    network_mode: "host"
+    volumes:
+      - /path/to/config:/config
+      - /path/to/cache:/cache
+      - /path/to/media:/media
+      - /path/to/media2:/media2:ro
+    restart: "unless-stopped"
+    # Optional - alternative address used for autodiscovery
+    environment:
+      - JELLYFIN_PublishedServerUrl=http://example.com
+```
+Sure, the file is bigger, but it is easier now for a human to read it and understand what it does. You can edit different options more confidently as the syntax is also more obvious.
+
+I will be using Docker Compose for the Minecraft server.
+
+The `docker-compose.yml` file for the default configuration of the server is
+```yml
+version: "3"
+
+services:
+  mc:
+    image: itzg/minecraft-server
+    ports:
+      - 25565:25565
+    environment:
+      EULA: "TRUE"
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+```
+
+This is just the base, and we can add a lot more arguments which can improve the server.
+
+#### Add a Message Of The Day (MOTD)
+This shows up as the server description in the Minecraft Client's server view so its a good thing to have to easily identify your server.
+#### Server Icon (ICON)
+This is a URL to an icon image, it can be whatever you choose as it will automatically convert the image to the right size and format to be shown in the Minecraft Client.
+
+![An Image of The Minecraft Client](./minecraft-client.png "An Image of The Minecraft Client")
+
+#### Whitelist Players (WHITELIST)
+This is a pretty important security feature, you can make a list of players who are allowed to join your server which can prevent random unknown griefers from coming and destroying your server. It also makes it easy to quickly add and remove allowed players.
+#### Administrator Players (OPS)
+This is a list of players who have admin powers over the server, this means that they can have cheats and can ban or kick players.
+#### Difficulty (DIFFICULTY)
+You can hard code the Difficulty of the server, I would probably set it to hard so that you can infect / cure zombie villagers with a 100% success rate but you can choose whatever difficulty (peaceful, easy, normal, hard) you like.
+#### Maximum Number of Players (MAX_PLAYERS)
+You can set this to ensure your server / network connection is not overloaded with too many players, by default the number is 20 although that may be too many for your server to handle.
+#### View Distance (VIEW_DISTANCE)
+This affects the maximum render distance a client can have, higher numbers are going to be very, very intensive, especially if there are many players. This setting depends on your specs, but you should test different render distances at increments of 4. The max I'd say a client would reasonably want is 20 and see if the server struggles. If it does, go down to 16, then 12, then 8 and vice versa.
+#### Player Vs Player Combat (PVP)
+PVP is enabled by default, this may be a bit chaotic or against the values of your Minecraft server so you can disable it.
+
+### Final `docker-compose.yml` File
+Here is what a `docker-compose.yml` file with all of these options configured can look like
+```yml
+version: "3"
+
+services:
+  mc:
+    image: itzg/minecraft-server
+    ports:
+      - 25565:25565
+    environment:
+      EULA: "TRUE"
+      MOTD: "The Minecraft Server Of Arjdroid"
+      ICON: "https://arjdroid.github.io/p/rss/P1181064_hu4ff82f1a5fa81e94a77ee1876a858f6c_9813553_2000x0_resize_q75_box.JPG"
+      WHITELIST: "Arjdroid"
+      OPS: "Arjdroid"
+      DIFFICULTY: "hard"
+      MAX_PLAYERS: "50"
+      VIEW_DISTANCE: "16"
+      PVP: "false"
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+```
+
+There are other options available as well but these are the ones I thought most important, you can check out the full list on the docker-minecraft-server github page https://github.com/itzg/docker-minecraft-server and scroll down.
+
+You can test the configuration by running the docker container (while in the same directory as the `docker-compose.yml` file.
+```
+user@minecraft-server:~/minecraft-server$ sudo docker compose up
+```
+
+Now you need to add the server in your Minecraft client. You can go to the "Multiplayer" section of the Minecraft client, and then click the "Add Server" button. You can give the server whatever name you want.
+
+The "Server Address" section is quite important. You need to know the IP Address (or URL) of the host server in which you are running the Docker Minecraft Server. If it is a public cloud virtual machine then it will have a public IP that you should already know.
+
+For example, if your server has public IP address 123.123.123.123. You need to enter 123.123.123.123 (This is assumming that you have set the Minecraft server's port to 25565 in the `docker-compose.yml` which is the default). If your server has a domain name such as example.net then you can enter that as the "Server Address".
+
+If you are running the server on a computer on your local LAN, then for now, for testing purposes, you can use its local IP address which you need to find using your router settings or a command like `ifconfig` or `ip a` and usually the IP address will be 192.168.1.x. Your network may also have an internal DNS server (like Pi-Hole) which can assign individual, local, domain names to each and every computer on the network.
+
+If you are running the docker-minecraft-server on your own computer, you can simply type `localhost` into the "Server Address" section.
+
+Now you can test your Minecraft server by joining it through your Minecraft client and doing whatever you want and you can alter the settings as well.
