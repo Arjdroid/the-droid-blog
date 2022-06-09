@@ -22,13 +22,15 @@ image = "minecraft-server.png"
 
 > **Disclaimer**: This guide is a general overview, please also do additional research before following. If you plan on using this article as a guide for setting up your OWN Minecraft (Java Edition) server, **PLEASE** read the entire article before going through with this process (It may help clear any doubts you have as well as ensure that you can go through with this process). Also, do remember that **I AM NOT RESPONSIBLE** for any damage that YOU may cause to yourself or your own hardware including, but not limited to: bricked devices, dead SD cards, thermonuclear war, or you getting fired because the alarm app failed. YOU are choosing to make these modifications, and I provide no guarantees of any sort.
 >
-> **This guide is slightly advanced and not recommended to those unfamiliar with using Linux**
+> Also, you might want to zoom in / out to adjust the webpage to your liking.
+>
+> ### _**This guide is slightly advanced and not recommended to blindly follow especially for those unfamiliar with using Linux but please feel free to go over it**_
 
 ## Introduction
 
 The idea of running my own Minecraft server for me and my friends first came to me after watching countless online videos of people playing on Minecraft SMP's (Survival-Multi-Player), I wanted to be able to collaborate with my friends on glorious builds and finding boatloads of diamonds (to turn into netherite of course).
 
-There are a lot of different Minecraft server hosting options, some even being free of cost, but the free ones were not of the best experience, though one can't really complaing when it's free...
+There are a lot of different Minecraft server hosting options, some even being free of cost, but the free ones were not of the best experience, though one can't really complain when it's free...
 minecraft
 I wanted a better experience, with a more fine-tuned control over the settings and have better server performance. Although this is much more advanced than using a paid, dedicated Minecraft hosting service.
 
@@ -36,31 +38,46 @@ I wanted a better experience, with a more fine-tuned control over the settings a
  * A usable server (basically any computer, from a desktop to a laptop to a Raspberry Pi, a [Virtual Machine](https://en.wikipedia.org/wiki/Virtual_machine), or a cloud server on something like *Google Cloud Platform*)
  * Decent Specifications (to handle around 5 simultaneous players):
    * Atleast a dual core 64bit processor (any modern Intel Core CPU or AMD Ryzen CPU), or a Raspberry 4 (I'm not sure how well a 3 would hold up)
-   * As much RAM as possible, atleast 4GB, more is preffered
-   * 8+ GB of *free storage*, because you want to take a LOT of backups of your world. Even though a really large world on its own may be at a max of 4GB if it's humongous (you will never realistically reach this on your home server because if your world is going to be visited by hundreds or thousands over the span of years, you should really be looking at more professional solutions with better uptime / support), it will usually be a couple hundred MB.
+   * As much RAM as possible, at least 4GB, more is preffered
+   * At LEAST 8GB of *free storage*
  * Any Linux distro (Ubuntu Server is very usable or Raspberry Pi OS Lite if you're on a Pi)
  * A valid Minecraft Java Edition License (to be able to play on your server!)
- * A working brain
+ * Being comfortable with a Linux environment and having basic troubleshooting capability and computer knowledge
 
-I myself will be using a dual core (hyperthreaded) amd64 virtual machine with 8GB of RAM assigned to it, running the server Linux distro Ubuntu. (If you use a distribution such as Arch Linux or Fedora or CentOS or OpenSUSE, the package commands will be quite different for you, please look up official instructions for those distributions.)
+I myself will be using a dual core (hyperthreaded) amd64 virtual machine with 8GB of RAM assigned to it, running the server Linux distro Ubuntu. (If you use a distribution such as Arch Linux or Fedora or CentOS or OpenSUSE, the package commands / availability will be quite different for you although you already know that)
 
-**This guide assumes that you have already installed and setup your Linux distribution upon your server, whatever it may be, and that the server is connected to the internet and up-to-date and that you have access to its command line (either via SSH or via a keyboard + monitor)**
+### This guide assumes a few more things
+* That you have already installed and setup your Linux distribution upon your server, whatever it may be
+* That your server is connected to the internet and up-to-date
+* That you have access to its command line (either via SSH or via a keyboard + monitor)
 
- > **If you have not set up your Linux distribution yet, you will need to do so** via the official instructions provided by its website.
+ > **If you have not set up a Linux distribution on your server yet, you will need to do so**
  >
- > Usually it is a very straightforward installation process. I would recommend using the linux distribution Ubuntu Server.
+ > Usually it is a very straightforward installation process. I would recommend using the linux distribution Ubuntu Server as it is quite popular and has good support from forums to help with issues.
  >
  > You can follow Ubuntu's official installation documentation at https://ubuntu.com/tutorials/install-ubuntu-server
+ >
+ > I am using **Ubuntu 20.04 LTS** although you may choose to use Ubuntu 22.04 LTS which is newer although at the time of writing I have found there may be some software that is not yet updated to be fully compatible with it although they are 90% likely to have been resolved by now.
 
 ## Docker Engine Setup
 
-If you already have docker installed on your system, please skip ahead to the next section, "Setting Up The Minecraft Server"
+If you already have Docker installed on your system, please skip ahead to the next section, "Minecraft Server Docker Container Setup"
 
-We will be using the [containerization](https://www.ibm.com/cloud/learn/containerization) engine known as Docker, this allows us to separate the application (Minecraft Server) from the rest of the operating system, making the application more portable (the environment is identical in each and every docker instance) and possibly more secure by isolating the application from the rest of the system as well as greatly easing the installation process.
+### Intro To Docker
 
-Installing Docker is very simple, simply follow the instructions laid out at [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/). It has instructions for all certified compatible systems. Just look at the table they give, and click on the tick-mark ✔️ which corresponds to your system, for my example, I'd click on the tick for "Debian x86_64/amd64".
+We will be using the [containerization](https://www.ibm.com/cloud/learn/containerization) engine known as Docker, this allows us to separate the application (Minecraft Server) from the rest of your host operating system, making the application more portable (the environment is identical in each and every docker instance) and possibly more secure by isolating the application from the rest of the system as well as greatly easing the installation process.
 
-> I am including the instructions for my specific configuration, it may differ from the instructions you require, so please check the [official documentation](https://docs.docker.com/engine/install/) to be sure. As always, read instructions CAREFULLY before following!
+I prefer using Docker Containers over using native applications in server environments because it is generally more easy to maintain a Docker container as everything is neatly kept inside its little software box. It reduces the messiness of my server as I don't have to worry about random dotfiles in my home and config directories. It also makes the uninstallation process more painless as there will be less files to account for that might go missing.
+
+Docker Containers also reduce attack surface area, meaning that they generally improve the security of your server. This is because Docker Containers by their nature isolate the application you are running so it reduces the chance of a vulnerability within application in your Docker Container affecting data in the host server and vice versa.
+
+Most serious and worthwhile server applications these days are available by their developers as a Docker Container. It is an industry standard especially in enterprise applications.
+
+### Docker Install Instructions
+
+Installing Docker is very simple, simply follow the instructions laid out at [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/). It has instructions for all certified compatible systems. Just look at the table they give, and click on the tick-mark ✔️ which corresponds to your system, for my example, I'd click on the tick for "Ubuntu x86_64/amd64".
+
+> I am including the instructions for my specific configuration (Ubuntu 20.04 LTS on amd64) it may differ from the instructions you require, so please check the [official documentation](https://docs.docker.com/engine/install/) to be sure. As always, read instructions CAREFULLY before following!
 > #### Sidenote: Docker officially support use on the following Linux Distributions
 >  * Ubuntu / Debian (x86_64, arm64)
 >  * Fedora / RHEL (x86_64, arm64)
@@ -70,8 +87,9 @@ Installing Docker is very simple, simply follow the instructions laid out at [ht
 
 The button leads to a webpage containing all necessary instructions such as uninstalling any old versions present:
 
-`
-sudo apt-get remove docker docker-engine docker.io containerd runc`
+```sh
+sudo a remove docker docker-engine docker.io containerd runc
+```
 
 It is most likely that, as you are on a fresh install, apt-get will report that none of these packages are installed or even been heard of (in it's default repositories).
 
@@ -81,38 +99,45 @@ To copy commands quickly you can double click the command to select the full lin
 
 First we must update our package repositories:
 
-`
-sudo apt update`
+```sh
+sudo apt update
+```
 
 Then install some dependencies required for adding Docker's repositories.
 
-`
-sudo apt install ca-certificates curl gnupg lsb-release`
+```sh
+sudo apt install ca-certificates curl gnupg lsb-release
+```
 
 After that you have to actually add Docker's official GPG key (used to verify Docker's repository) to Ubuntu Server's keyring:
 
-`
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg`
+```sh
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+```
 
 Then you need to choose which Docker repository you are going to add, in this case I'm choosing __stable__ which is almost always the desired option.
 
-`
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`
+```sh
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
 
 Then, to actually install the latest version of Docker Engine, you need to update your repositories:
 
-`
-sudo apt update`
+```sh
+sudo apt update
+```
 
 Then install the following packages:
 
-`
-sudo apt install docker-ce docker-ce-cli containerd.io`
+```sh
+sudo apt install docker-ce docker-ce-cli containerd.io
+```
 
 To verify that Docker Engine is installed correctly, run the __hello-world__ image:
 
-`
-sudo docker run hello-world`
+```sh
+sudo docker run hello-world
+```
 
 It should give an output similar to this:
 
@@ -139,9 +164,9 @@ For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
 
-You can try out its advise to run a proper Ubuntu container as well with the command `docker run -it ubuntu bash` though keep in mind that this will eat up a couple of gigabytes of valuable storage which you may not have to spare (in case you have limited storage) because it creates a new docker container and it downloads the ubuntu image from docker's hub.
+You can try out its advise to run a proper Ubuntu container as well with the command `sudo docker run -it ubuntu bash` though keep in mind that this will eat up a couple of gigabytes of valuable storage because it creates a new docker container and it downloads the ubuntu image from docker's hub.
 
-> Tip:
+> ### Tip:
 >
 > You can delete old containers and images that you are no longer using via the following commands:
 > To delete an old container you must first know the name or the id of the container
@@ -152,7 +177,9 @@ You can try out its advise to run a proper Ubuntu container as well with the com
 > 5f4294d34628   ubuntu        "bash"     4 minutes ago   Exited (0) 4 minutes ago           modest_banzai
 > ```
 > Suppose I want to delete the ubuntu container for whatever reason,I simply have to execute the following command:
-> `sudo docker rmi aaa7aab55ac1`
+> ```sh
+> sudo docker rmi aaa7aab55ac1
+> ```
 >
 > You can replace the container ID with that of whichever container you want to delete
 > For more information you should check out the Docker documentation at https://docs.docker.com/
@@ -161,10 +188,11 @@ You should also install the `docker-compose-plugin` in case it was not already i
 ```sh
 sudo apt install docker-compose-plugin
 ```
+This is an optional add-on for Docker which can again improve how well your containers are organised and I am covering it in the next section.
 
 ## Minecraft Server Docker Container Setup
 
-Now that we have docker up and running, we can explore different options as to how we go about setting up the Minecraft server docker container.
+Now that we have Docker up and running, we can explore different options as to how we go about setting up the Minecraft server Docker container.
 
 I have found that the project at https://github.com/itzg/docker-minecraft-server is a great starting place and it is what I will be using in this guide.
 > You may want to use a different docker container such as https://github.com/itzg/docker-minecraft-bedrock-server in case you and your friends play on Minecraft: Bedrock Edition (Windows 10 Edition, and all the Mobile / Console editions are bedrock) although they won't be addressed much here.
