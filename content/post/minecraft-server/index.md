@@ -2,7 +2,7 @@
 draft = "false"
 author = "Arjdroid"
 title = "Hosting my own Minecraft Server with Docker on Linux"
-date = "2022-06-04"
+date = "2022-06-09"
 description = "An article that details how I hosted my own Minecraft Server using the Docker Engine."
 tags = [
     "minecraft",
@@ -15,7 +15,7 @@ categories = [
     "homelab",
     "networking",
 ]
-series = ["Minecraft"]
+series = ["Networking"]
 aliases = ["Minecraft-Server"]
 image = "minecraft-server.png"
 +++
@@ -28,23 +28,23 @@ image = "minecraft-server.png"
 
 ## Introduction
 
-The idea of running my own Minecraft server for me and my friends first came to me after watching countless online videos of people playing on Minecraft SMP's (Survival-Multi-Player), I wanted to be able to collaborate with my friends on glorious builds and finding boatloads of diamonds (to turn into netherite of course).
+The idea of running my own Minecraft server for me and my friends first came to me after watching countless online videos of people playing on Minecraft SMP's (Survival-Multiplayer), I wanted to be able to collaborate with my friends on glorious builds and finding boatloads of diamonds (to turn into netherite of course).
 
-There are a lot of different Minecraft server hosting options, some even being free of cost, but the free ones were not of the best experience, though one can't really complain when it's free...
-minecraft
-I wanted a better experience, with a more fine-tuned control over the settings and have better server performance. Although this is much more advanced than using a paid, dedicated Minecraft hosting service.
+There are a lot of different Minecraft server hosting options, some even being free of cost, but the free ones did not provide the best experience, though one can't really complain when it's free…
+
+I wanted a better experience, with more fine-tuned control over the settings and better server performance. Although, this is much more advanced than using a paid, dedicated Minecraft hosting service.
 
 ## Prerequisites
  * A usable server (basically any computer, from a desktop to a laptop to a Raspberry Pi, a [Virtual Machine](https://en.wikipedia.org/wiki/Virtual_machine), or a cloud server on something like *Google Cloud Platform*)
  * Decent Specifications (to handle around 5 simultaneous players):
-   * Atleast a dual core 64bit processor (any modern Intel Core CPU or AMD Ryzen CPU), or a Raspberry 4 (I'm not sure how well a 3 would hold up)
-   * As much RAM as possible, at least 4GB, more is preffered
+   * At least a dual core 64bit processor (any modern Intel Core CPU or AMD Ryzen CPU), or a Raspberry 4 (I'm not sure how well a 3 would hold up)
+   * As much RAM as possible, at least 4GB, more is preferred
    * At LEAST 8GB of *free storage*
  * Any Linux distro (Ubuntu Server is very usable or Raspberry Pi OS Lite if you're on a Pi)
- * A valid Minecraft Java Edition License (to be able to play on your server!)
+ * A valid Minecraft Java Edition Licence (to be able to play on your server!)
  * Being comfortable with a Linux environment and having basic troubleshooting capability and computer knowledge
 
-I myself will be using a dual core (hyperthreaded) amd64 virtual machine with 8GB of RAM assigned to it, running the server Linux distro Ubuntu. (If you use a distribution such as Arch Linux or Fedora or CentOS or OpenSUSE, the package commands / availability will be quite different for you although you already know that)
+I myself will be using a dual core (multi-threaded) amd64 virtual machine with 8GB of RAM assigned to it, running the server Linux distro Ubuntu. (If you use a distribution such as Arch Linux or Fedora or CentOS or OpenSUSE, the package commands / availability will be quite different for you although you already know that)
 
 ### This guide assumes a few more things
 * That you have already installed and setup your Linux distribution upon your server, whatever it may be
@@ -57,7 +57,7 @@ I myself will be using a dual core (hyperthreaded) amd64 virtual machine with 8G
  >
  > You can follow Ubuntu's official installation documentation at https://ubuntu.com/tutorials/install-ubuntu-server
  >
- > I am using **Ubuntu 20.04 LTS** although you may choose to use Ubuntu 22.04 LTS which is newer although at the time of writing I have found there may be some software that is not yet updated to be fully compatible with it although they are 90% likely to have been resolved by now.
+ > I am using **Ubuntu 20.04 LTS**. You may choose to use Ubuntu 22.04 LTS which is newer although, at the time of writing I have found there may be some software that is not yet updated to be fully compatible with it but it is 75% likely to have been resolved by now.
 
 ## Docker Engine Setup
 
@@ -65,23 +65,23 @@ If you already have Docker installed on your system, please skip ahead to the ne
 
 ### Intro To Docker
 
-We will be using the [containerization](https://www.ibm.com/cloud/learn/containerization) engine known as Docker, this allows us to separate the application (Minecraft Server) from the rest of your host operating system, making the application more portable (the environment is identical in each and every docker instance) and possibly more secure by isolating the application from the rest of the system as well as greatly easing the installation process.
+We will be using the [containerization](https://www.ibm.com/cloud/learn/containerization) engine known as Docker, this allows us to separate the application (Minecraft Server) from the rest of your host operating system, making the application more portable (the environment is identical in each and every docker copy of a container) and possibly more secure by isolating the application from the rest of the system as well as greatly easing the installation process.
 
 I prefer using Docker Containers over using native applications in server environments because it is generally more easy to maintain a Docker container as everything is neatly kept inside its little software box. It reduces the messiness of my server as I don't have to worry about random dotfiles in my home and config directories. It also makes the uninstallation process more painless as there will be less files to account for that might go missing.
 
-Docker Containers also reduce attack surface area, meaning that they generally improve the security of your server. This is because Docker Containers by their nature isolate the application you are running so it reduces the chance of a vulnerability within application in your Docker Container affecting data in the host server and vice versa.
+Docker Containers also reduce attack surface area, meaning that they generally improve the security of your server. This is because Docker Containers by their nature isolate the application you are running so it reduces the chance of a vulnerability within the application in your Docker Container affecting data in the host server and vice versa.
 
 Most serious and worthwhile server applications these days are available by their developers as a Docker Container. It is an industry standard especially in enterprise applications.
 
 ### Docker Install Instructions
 
-Installing Docker is very simple, simply follow the instructions laid out at [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/). It has instructions for all certified compatible systems. Just look at the table they give, and click on the tick-mark ✔️ which corresponds to your system, for my example, I'd click on the tick for "Ubuntu x86_64/amd64".
+Installing Docker is very simple, simply follow the instructions laid out at [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/). It has instructions for all certified compatible systems. Just look at the table they give, and click on the tick-mark ✔️ which corresponds to your system. For my example, I'd click on the tick for "Ubuntu x86_64/amd64".
 
-> I am including the instructions for my specific configuration (Ubuntu 20.04 LTS on amd64) it may differ from the instructions you require, so please check the [official documentation](https://docs.docker.com/engine/install/) to be sure. As always, read instructions CAREFULLY before following!
+> I am including the instructions for my specific configuration (Ubuntu 20.04 LTS on amd64) . It may differ from the instructions you require, so please check the [official documentation](https://docs.docker.com/engine/install/) to be sure. As always, read instructions CAREFULLY before following!
 > #### Sidenote: Docker officially support use on the following Linux Distributions
 >  * Ubuntu / Debian (x86_64, arm64)
 >  * Fedora / RHEL (x86_64, arm64)
->  * Raspbian (arm32-bit, and soon the new arm64 OS aswell)
+>  * Raspbian (arm32-bit, and the new arm64 OS as well)
 >  * CentOS (x86_64, arm64)
 >  * If you are using Arch Linux, you should follow the [Arch Wiki guide to using Docker](https://wiki.archlinux.org/title/Docker) as it is not officially supported by Docker, but community maintained.
 
@@ -91,7 +91,7 @@ The button leads to a webpage containing all necessary instructions such as unin
 sudo a remove docker docker-engine docker.io containerd runc
 ```
 
-It is most likely that, as you are on a fresh install, apt-get will report that none of these packages are installed or even been heard of (in it's default repositories).
+It is most likely that, as you are on a fresh install, apt-get will report that none of these packages are installed or even been heard of (in its default repositories).
 
 I will be following Docker's recommended method of installation, which is to configure apt (Ubuntu's package manager) to use Docker's private repositories for easily manageable installs, there are other, more advanced methods which may suit specific needs, but for our purposes, this method is the simplest.
 
@@ -236,7 +236,7 @@ sudo docker run hello-world
 ```
 It is a short, straightforward command to test the hello-world container. You can add arguments to do things like attach network ports and data volumes and specify executing specific commands. You can also put all those things in a shell script such as `docker-hello-world.sh` which will contain the command along with its arguments so that you can run it with just one executable.
 
-The main drawback however, at least in my opinion, is readability and editability. It can be hard to easily disect and understand a large, single command script with many arguments. Even a well made command like the one below still needs to use backslashes which could be easily messed up.
+The main drawback however, at least in my opinion, is readability and editability. It can be hard to easily dissect and understand a large, single command script with many arguments. Even a well made command like the one below still needs to use backslashes which could be easily messed up.
 ```sh
 docker run -d \
  --name jellyfin \
@@ -293,12 +293,14 @@ services:
 This is just the base, and we can add a lot more arguments which can improve the server.
 
 #### Add a Message Of The Day (MOTD)
-This shows up as the server description in the Minecraft Client's server view so its a good thing to have to easily identify your server.
+This shows up as the server description in the Minecraft Client's server view so it's a good thing to have to easily identify your server.
 #### Server Icon (ICON)
 This is a URL to an icon image, it can be whatever you choose as it will automatically convert the image to the right size and format to be shown in the Minecraft Client.
 
 ![An Image of The Minecraft Client](./minecraft-client.png "An Image of The Minecraft Client")
 
+#### Timezone (TZ)
+This is the timezone of your server which is applied to the time that is used in your logs, make sure that your host system's timezone is the same as that of the Docker container.
 #### Whitelist Players (WHITELIST)
 This is a pretty important security feature, you can make a list of players who are allowed to join your server which can prevent random unknown griefers from coming and destroying your server. It also makes it easy to quickly add and remove allowed players.
 #### Administrator Players (OPS)
@@ -311,6 +313,13 @@ You can set this to ensure your server / network connection is not overloaded wi
 This affects the maximum render distance a client can have, higher numbers are going to be very, very intensive, especially if there are many players. This setting depends on your specs, but you should test different render distances at increments of 4. The max I'd say a client would reasonably want is 20 and see if the server struggles. If it does, go down to 16, then 12, then 8 and vice versa.
 #### Player Vs Player Combat (PVP)
 PVP is enabled by default, this may be a bit chaotic or against the values of your Minecraft server so you can disable it.
+
+### Data Volumes
+Docker has a feature in which containers can store data in a "Volume". This volume is a part of the host's native file system. In the example below, there is a volume attached called `minecraft-data`. This will create a directory called `minecraft-data` under the directory in which the `docker-compose.yml` file is stored. In my case the path of the directory will be `~/minecraft-server/minecraft-data`. This same directory is perceived to be the `/data` directory to the image inside of the Docker container.
+
+The purpose of doing this is so that I can easily access the data of the minecraft-server in that directory natively from my host OS so that I can run regular backups and do other things. It allows me to easily extract data like the actual Minecraft world of the server and transfer it to a new docker container. It is also useful when updating the Docker image of itzg/minecraft-server so that the world is persistent throughout newer versions of the image.
+
+A deeper and easier to understand explaination is available at https://docs.docker.com/storage/volumes/
 
 ### Final `docker-compose.yml` File
 Here is what a `docker-compose.yml` file with all of these options configured can look like
@@ -325,7 +334,8 @@ services:
     environment:
       EULA: "TRUE"
       MOTD: "The Minecraft Server Of Arjdroid"
-      ICON: "https://arjdroid.github.io/p/rss/P1181064_hu4ff82f1a5fa81e94a77ee1876a858f6c_9813553_2000x0_resize_q75_box.JPG"
+      ICON: "https://github.com/Arjdroid/arjdroid.github.io/blob/main/image/P1181064.JPG"
+      TZ: "Europe/London"
       WHITELIST: "Arjdroid"
       OPS: "Arjdroid"
       DIFFICULTY: "hard"
@@ -335,6 +345,9 @@ services:
     tty: true
     stdin_open: true
     restart: unless-stopped
+    volumes:
+      # attach a directory relative to the directory containing this docker-compose.yml file
+      - ./minecraft-data:/data
 ```
 
 There are other options available as well but these are the ones I thought most important, you can check out the full list on the docker-minecraft-server github page https://github.com/itzg/docker-minecraft-server and scroll down.
@@ -348,10 +361,21 @@ Now you need to add the server in your Minecraft client. You can go to the "Mult
 
 The "Server Address" section is quite important. You need to know the IP Address (or URL) of the host server in which you are running the Docker Minecraft Server. If it is a public cloud virtual machine then it will have a public IP that you should already know.
 
-For example, if your server has public IP address 123.123.123.123. You need to enter 123.123.123.123 (This is assumming that you have set the Minecraft server's port to 25565 in the `docker-compose.yml` which is the default). If your server has a domain name such as example.net then you can enter that as the "Server Address".
+For example, if your server has the public IP address 123.123.123.123. You need to enter 123.123.123.123 (This is assuming that you have set the Minecraft server's port to 25565 in the `docker-compose.yml` which is the default). If your server has a domain name such as example.net then you can enter that as the "Server Address".
 
 If you are running the server on a computer on your local LAN, then for now, for testing purposes, you can use its local IP address which you need to find using your router settings or a command like `ifconfig` or `ip a` and usually the IP address will be 192.168.1.x. Your network may also have an internal DNS server (like Pi-Hole) which can assign individual, local, domain names to each and every computer on the network.
 
 If you are running the docker-minecraft-server on your own computer, you can simply type `localhost` into the "Server Address" section.
 
 Now you can test your Minecraft server by joining it through your Minecraft client and doing whatever you want and you can alter the settings as well.
+
+## Networking Setup (Port Forwarding)
+
+There is an additional step required to actually make your Minecraft Server accessible to the world if it is currently only accessible via a local IP address. You need to enable a network setting on your router called "Port Forwarding".
+
+This will allow people from outside your network to access the specific port 25565 on your local minecraft server.
+
+### Keep in mind that this can also open up your network to attacks from outside
+**You do this at your own risk and this is not recommended to inexperienced network administrators.**
+
+Since you are running
