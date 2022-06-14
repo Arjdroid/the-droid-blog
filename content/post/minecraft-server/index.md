@@ -378,4 +378,10 @@ This will allow people from outside your network to access the specific port 255
 ### Keep in mind that this can also open up your network to attacks from outside
 **You do this at your own risk and this is not recommended to inexperienced network administrators.**
 
-Since you are running
+You need to know what model is your router and look up the instructions to set up port forwarding on that specific router. The port you are forwarding is 25565 and the IP address will be the local IP address of the Minecraft server. 
+
+More detailed instructions will require knowledge of your specific setup. I trust that your abilities to use a search engine will suffice in getting you there.
+
+With that, I think you have the knowledge you need to get started as a Minecraft server administrator.
+
+> Thank you for reading!
