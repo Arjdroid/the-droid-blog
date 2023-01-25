@@ -30,7 +30,7 @@ A little over a month ago, I decided to participate in an upcoming hackathon. Fo
 
 They are usually 24 hours continuous, but some can span to two or three days.
 
-I have never really had much formal coding experience, mostly just skirting around it to play around with things like linux and docker instead, as this blog has shown. 
+I have never really had much formal coding experience, mostly just moving around and playing with with things like linux and docker instead, with the ocassional python or shell scripting, as this blog has shown. 
 
 This was going to be the first time I did some 'real' programming; I was very excited.
 
