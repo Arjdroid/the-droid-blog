@@ -1,8 +1,8 @@
 +++
-draft = "true"
+draft = "false"
 author = "Arjdroid"
 title = "Participating in a 24 hour hackathon"
-date = "2020-10-23"
+date = "2023-01-23"
 description = "My experiences of participating in a 24 hour hackathon."
 tags = [
     "programming",
@@ -36,4 +36,4 @@ This was going to be the first time I did some 'real' programming; I was very ex
 
 ## Preparation
 
-Before even looking for a team, I started to prepare my ideas. There was a wide variety of available themes, but I settled on Transporation as my main theme with the sub theme of Environmental Sustainibility.
+Before even looking for a team, I started to prepare my ideas. There was a wide variety of available themes, but I settled on Transporation as my main theme with the sub theme of Environmental Sustainibility. (Incidentally, a large portion of my competitors chose to work on the Healthcare theme.)
