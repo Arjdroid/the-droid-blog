@@ -66,4 +66,26 @@ One thing I noticed in my particular (high-school level) hackathon was that the 
 
 The moral of the story is to make sure you have teammates you can rely upon, and that you can divide work across your team properly, ensuring no one gets in each other's way and that everyone can handle their workload.
 
-One quirk of my team in particular was that my teammates, although slightly familiar with programming languages like Python and JavaScript, were similarly unfamiliar with Flutter and Dart. As such, I had to teach them the basics (while also learning them myself), having walked them through the lengthy installation process and troubleshooting any issues, I assigned each of us a miniature project to complete over the course of 1 week before the hackathon. We also held meetings daily, to catch each other up with our progress
+### Quirks
+
+One quirk of my team in particular was that my teammates, although slightly familiar with programming languages like Python and JavaScript, were similarly unfamiliar with Flutter and Dart. As such, I had to teach them the basics (while also learning them myself). 
+
+Having walked them through the lengthy installation process and troubleshooting any issues, I assigned each of us a miniature project to complete over the course of 1 week before the hackathon. We also held meetings daily, to catch each other up with our progress.
+
+I believe this kind of project-based learning was also very important for us, as it gave us a goal that we had to work towards, and kinda forced us to figure out a way to do it.
+
+Our projects were focused on what compartments of the project we'd be working on, so that we'd have at least some basic experience before diving off the deep end.
+
+Apart from just discussing the tech stack, we also discussed other parts of the project, like new ideas. Things like adding a social / friends page where users can see their friends' progress and adding the ability to specify what type of car you use were among the features that stemmed from our meetings. 
+
+One of the first orders of business in our first meeting was just coming up with a name. After much deliberation, we finally settled on greenifyTransit. The camelCase naming convention was something that we all really liked, and we moulded our team names to try and fit within that.
+
+## Actual Process and Struggles
+
+On the day of the hackathon, we started off with high spirits, and a plan to stick to. I insisted that all of us get a good amount of sleep, 8 hours at minimum, to ensure we'd be well rested off the bat.
+
+Something I hadn't foreseen was that the organisers would require all contestants to use Git as their code's version control system, as well as publishing the code on a public repository on GitHub.
+
+Thankfully, I myself was already familiar with most aspects of Git and I had all the software already installed on my Mac but I still had to guide my teammates through the basics and through installing all the required software. I set up my public repository and added my teammates as collaborators.
+
+We had made a roadmap of all the features we wanted to implement, and who would do what, so our work process was pretty streamlined and there wasn't much confusion.
