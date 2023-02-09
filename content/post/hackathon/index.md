@@ -17,7 +17,7 @@ aliases = ["participating-in-24hr-hackathon"]
 image = "coverphoto.jpg"
 +++
 
-> #### Outline
+> ### Outline
 > * Introduction
 > * Preparation
 > * Actual Process & Struggles
@@ -36,4 +36,34 @@ This was going to be the first time I did some 'real' programming; I was very ex
 
 ## Preparation
 
-Before even looking for a team, I started to prepare my ideas. There was a wide variety of available themes, but I settled on Transporation as my main theme with the sub theme of Environmental Sustainibility. (Incidentally, a large portion of my competitors chose to work on the Healthcare theme.)
+Before even looking for a team, I started to prepare my ideas. There was a wide variety of available themes, but I settled on Transporation as my main theme with the sub theme of Environmental Sustainibility.
+
+### Ideas
+
+My app idea had been lurking in the back of my head for a while, having watched many Youtube videos relevant to the topics of transportation and environmental sustainibility, but after some brainstorming and discussing with my friends (its very important to discuss with someone else to get an outside perspective) I settled on an app that would help users be more environmentally friendly by suggesting the most environmentally friendly mode of transport to them.
+
+Additional features of the app, like tracking monthly greenhouse gas emissions and allowing users to purchase carbon offsets were thought of later in the preparation process, but only after actually settling on the base idea.
+
+After that, I also settled on a technology stack upon which I would develop the application.
+
+### Tech Stack
+
+Since I wanted a cross-platform, primarily mobile application, [Flutter](https://flutter.dev) was the obvious choice, especially as I was very new to mobile app development and development in general. The documentation and tooling available for Flutter and Dart is first-class, and I was able to pick up on it very quickly, especially thanks to tons of random Youtube tutorials on how to implement the features I desired.
+
+When I say tons, I truly mean it: hours and hours of videos to absorb as much knowledge as quickly as possible. I think this was really key in the preparation process, after having watched and practiced so many tutorials, I had a much firmer grasp of how I wanted to go about making my app; what API's I might want to implement, what U.I structure I want to follow, how I might store and update different parts of the app.
+
+### Teammates
+
+In contrast with learning the tech stack, finding teammates was more difficult than I thought. Most of my friends that I would have normally turned to were already part of the hackathon's organising committee. Thankfully, after a lot of searching, rejecting, rejections and a little perseverance, I was able to find the right fit.
+
+It's very important to be sure you get along well with your teammates so that you can work more effectively, without heavy conflict. Your team's structure should also be well defined, especially in larger teams, with an explicitly defined leader or explicitly defined equality, to avoid confusion and conflict later on.
+
+In my case, the maximum number of team members allowed in the hackathon was five, but I stuck with a tighter bunch of only 3 (including myself). 
+
+Having a smaller team can be both, a blessing and a curse. Namely, a smaller team is more agile, and can usually work quicker as collaboration and division of work is simpler. The main disadvantage in comparison to a larger team is that there are less people to actually do the work, so each team member has a larger workload and less can be done. A well-managed large team can significantly outperform a smaller team but managing well is something a lot of teams struggle with.
+
+One thing I noticed in my particular (high-school level) hackathon was that the teams shortlisted for the final round and especially the teams that actually won awards were almost always small. There were many more teams with 1 or 2 members among the finalists than teams with 4 or 5 members. This was in contrast with the average team size which leaned more towards 3 or 4.
+
+The moral of the story is to make sure you have teammates you can rely upon, and that you can divide work across your team properly, ensuring no one gets in each other's way and that everyone can handle their workload.
+
+One quirk of my team in particular was that my teammates, although slightly familiar with programming languages like Python and JavaScript, were similarly unfamiliar with Flutter and Dart. As such, I had to teach them the basics (while also learning them myself), having walked them through the lengthy installation process and troubleshooting any issues, I assigned each of us a miniature project to complete over the course of 1 week before the hackathon. We also held meetings daily, to catch each other up with our progress
