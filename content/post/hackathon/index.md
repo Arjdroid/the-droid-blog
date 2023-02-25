@@ -84,8 +84,42 @@ One of the first orders of business in our first meeting was just coming up with
 
 On the day of the hackathon, we started off with high spirits, and a plan to stick to. I insisted that all of us get a good amount of sleep, 8 hours at minimum, to ensure we'd be well rested off the bat.
 
-Something I hadn't foreseen was that the organisers would require all contestants to use Git as their code's version control system, as well as publishing the code on a public repository on GitHub.
+### Git
 
-Thankfully, I myself was already familiar with most aspects of Git and I had all the software already installed on my Mac but I still had to guide my teammates through the basics and through installing all the required software. I set up my public repository and added my teammates as collaborators.
+Something I somehow forgot that we were going to use git and as such, had not fully familiarised my teammates with the [git control system](https://git-scm.com/) apart from making sure they all had GitHub accounts.
+
+Thankfully, I myself was already somewhat familiar with most aspects of Git and I had all the software already installed on my Mac but I still had to guide my teammates through the basics and through installing all the required software. I set up my public repository and added my teammates as collaborators.
 
 We had made a roadmap of all the features we wanted to implement, and who would do what, so our work process was pretty streamlined and there wasn't much confusion.
+
+### Audits, Schedule and Scope
+
+We were given a schedule of all the different audits with a vague description of the criterion and expectations for each audit, with a total of 4 audits in the 24 hour period.
+
+We set our sights towards getting a skeleton application started for audit 1. Since we were still quite inexperienced with git, after figuring out how to all work on separate branches, we all worked on a very divergent branches.
+
+This would come to bite us later.
+
+We split up the tasks such that I would handle the backend API calls and logic of the app while my two teammates would solely work on the frontend and different pages of the app.
+
+Progress started off slowly and we had a little bit of a reality check regarding our scope which we now felt was quite ambitious but nevertheless, we chugged along.
+
+#### Audit 1
+
+Coming to the first audit (around 16:00 instead of the expected 14:00), we had our 3 laptops showcasing 3 very much separate flutter applications that we had yet to merge. Still, we had the underlyings of the app we wanted, with pieces of the puzzle scattered across branches.
+
+### The (not so) Great Merge
+
+Our next task was to simply merge the branches, resolving conflicts and making sure secrets like API keys wouldn't magically surface.
+
+This proved to be harder than I thought.
+
+The main problem was the unreliability of our internet connection. The organisers offered WiFi access but it was extremely slow due to the hundreds of participants relying on a measly single uplink. My choice to stick to my phone's hotspot wasn't necessarily that much better, given that signal was spotty, resulting in a lot of frustration.
+
+Trying to merge branches on [github.com](github.com) was an exercise in patience (or a lack thereof). It would taunt me with a perpetually rotating circle loading animation as it looked through the files for merge conflicts. After waiting aeons, I would finally get the chance to revolve the conflicts, clicking on the big green 'Merge' button, only to be told that something went wrong with my internet connection and I had to start the whole process over again.
+
+After having this occur a painfully large number of times I gave up for now, and we kept working on our separate branches.
+
+#### Audit 2
+
+Subsequently, the second audit had a lacklustre showing, we were told that we were doing alright but we didn't meet the promises we made regarding merging the codebases to get a cohesive UI to show to the judges.
