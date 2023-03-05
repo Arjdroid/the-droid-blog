@@ -104,10 +104,6 @@ We split up the tasks such that I would handle the backend API calls and logic o
 
 Progress started off slowly and we had a little bit of a reality check regarding our scope which we now felt was quite ambitious but nevertheless, we chugged along.
 
-#### Audit 1
-
-Coming to the first audit (around 16:00 instead of the expected 14:00), we had our 3 laptops showcasing 3 very much separate flutter applications that we had yet to merge. Still, we had the underlyings of the app we wanted, with pieces of the puzzle scattered across branches.
-
 ### The (not so) Great Merge
 
 Our next task was to simply merge the branches, resolving conflicts and making sure secrets like API keys wouldn't magically surface.
@@ -119,7 +115,3 @@ The main problem was the unreliability of our internet connection. The organiser
 Trying to merge branches on [github.com](github.com) was an exercise in patience (or a lack thereof). It would taunt me with a perpetually rotating circle loading animation as it looked through the files for merge conflicts. After waiting aeons, I would finally get the chance to revolve the conflicts, clicking on the big green 'Merge' button, only to be told that something went wrong with my internet connection and I had to start the whole process over again.
 
 After having this occur a painfully large number of times I gave up for now, and we kept working on our separate branches.
-
-#### Audit 2
-
-Subsequently, the second audit had a lacklustre showing, we were told that we were doing alright but we didn't meet the promises we made regarding merging the codebases to get a cohesive UI to show to the judges.
