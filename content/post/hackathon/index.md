@@ -37,3 +37,9 @@ This was going to be the first time I did some 'real' programming; I was very ex
 ## Advice
 
 I don't want to bore you with the details so let me just list some advice I thought would be obvious / I wish I knew beforehand
+
+> * Preparation
+> * Extension Cords
+> * Noise-Cancelling Headphones
+> * Caffeine
+> * Focus on Timeline
