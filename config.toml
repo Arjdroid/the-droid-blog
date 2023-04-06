@@ -1,4 +1,4 @@
-baseurl = "https://arjdroid.github.io"
+baseurl = "https://arjdroid.me"
 languageCode = "en-us"
 theme = "hugo-theme-stack"
 paginate = 5
@@ -97,12 +97,6 @@ DefaultContentLanguage = "en"                   # Theme i18n support
         url = "about"
         weight = -90
         pre = "user"
-    [[menu.main]]
-        identifier = "archives"
-        name = "Archives"
-        url = "archives"
-        weight = -80
-        pre = "archives"
     [[menu.main]]
         identifier = "rss"
         name = "RSS"
