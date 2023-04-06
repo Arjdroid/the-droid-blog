@@ -2,7 +2,7 @@
 draft = "false"
 author = "Arjdroid"
 title = "RSS"
-date = "2023-04-06"
+date = "2020-10-06"
 description = "An article that details usage instructions for my RSS feed."
 tags = [
     "rss",
