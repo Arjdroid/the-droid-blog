@@ -176,7 +176,7 @@ You can try out its advise to run a proper Ubuntu container as well with the com
 > aaa7aab55ac1   hello-world   "/hello"   5 minutes ago   Exited (0) 5 minutes ago           eager_haibt
 > 5f4294d34628   ubuntu        "bash"     4 minutes ago   Exited (0) 4 minutes ago           modest_banzai
 > ```
-> Suppose I want to delete the ubuntu container for whatever reason,I simply have to execute the following command:
+> Suppose I want to delete the ubuntu container for whatever reason, I simply have to execute the following command:
 > ```sh
 > sudo docker rmi aaa7aab55ac1
 > ```
@@ -319,7 +319,7 @@ Docker has a feature in which containers can store data in a "Volume". This volu
 
 The purpose of doing this is so that I can easily access the data of the minecraft-server in that directory natively from my host OS so that I can run regular backups and do other things. It allows me to easily extract data like the actual Minecraft world of the server and transfer it to a new docker container. It is also useful when updating the Docker image of itzg/minecraft-server so that the world is persistent throughout newer versions of the image.
 
-A deeper and easier to understand explaination is available at https://docs.docker.com/storage/volumes/
+A deeper and easier to understand explanation is available at https://docs.docker.com/storage/volumes/
 
 ### Final `docker-compose.yml` File
 Here is what a `docker-compose.yml` file with all of these options configured can look like

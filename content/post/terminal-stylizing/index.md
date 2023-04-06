@@ -28,7 +28,7 @@ A customised terminal is unique and brings the personality of the user into the 
 There are many ways to go about customising your terminal, from using automated shell scripts all the way to hand editing your `.bashrc` or `.zshrc` files, all depending upon on how much time you want to spend on such a task.
 
 > ### Prerequisites:
-> * A UNIX-like terminal interface either on macOS or Linux (no Powershell but WSL does count as Linux)
+> * A UNIX-like terminal interface either on macOS or Linux (no PowerShell but WSL does count as Linux, I'm also not supporting BSD at this time)
 > * Some knowledge on working with a terminal interface
 
 ## Terminal Emulator
@@ -43,7 +43,7 @@ I am very happy with the default terminal application, but there are other alter
 
 Take [iTerm2](https://iterm2.com/) for example, it is another macOS focused Terminal Emulator, that is also open source and has a boat load of features. It is very popular and is comparable in terms of customisability. I'd say it is just really dependent on personal preference whether you should go for the default macOS "Terminal" or iTerm2 as they are both really solid options.
 
-One other macOS Terminal emulator that comes to mind is [Alacritty](https://alacritty.org/). It is a very different choice from the others mentioned thus far. Firstly, it is quite a lot less feature packed as the alternatives, it doesn't have many features that others may consider basic such as tabs. All configuration is done via editing of the `alacritty.yml` YAML file rather than a Graphical User Interface. It isn't as "User Friendly" but is extremely customisable and blazingly fast at executing commands due to its GPU accelerated nature providing a noticable improvement in speed on some machines. It is the least polished Terminal Emulator of the three as it is still consiered to be at a beta level of readiness and the developers aren't very "friendly" to macOS as, though they provide a macOS .dmg installer you are required to jump through a few hoops in terms of allowing the software to bypass macOS' Gateway in order to run the software because it is not actually Apple notarized so it has not been certified as "Not Malware" in Apple's eyes.
+One other macOS Terminal emulator that comes to mind is [Alacritty](https://alacritty.org/). It is a very different choice from the others mentioned thus far. Firstly, it is quite a lot less feature packed as the alternatives, it doesn't have many features that others may consider basic such as tabs. All configuration is done via editing of the `alacritty.yml` YAML file rather than a Graphical User Interface. It isn't as "User Friendly" but is extremely customisable and blazingly fast at executing commands due to its GPU accelerated nature providing a noticeable improvement in speed on some machines. It is the least polished Terminal Emulator of the three as it is still considered to be at a beta level of readiness and the developers aren't very "friendly" to macOS as, though they provide a macOS .dmg installer you are required to jump through a few hoops in terms of allowing the software to bypass macOS' Gateway in order to run the software because it is not actually Apple notarized so it has not been certified as "Not Malware" in Apple's eyes.
 
 To install Alacritty you have to go about it via a slightly more "complicated" path of adding a few flags in the brew package manager command, and this is potentially less secure so take that as you will.
 
@@ -60,7 +60,7 @@ You can easily find a lot of great colour schemes for the macOS Terminal over he
 
 There is a great deal more choice in Terminal Emulators on the Linux platform, given that every Desktop Environment and or distribution has its own, I am just going to stick to the few that I know well.
 
-Firstly, GNOME Terminal, included by default with GNOME based distros such as Ubuntu, Pop!\_OS, and Fedora (and even on FreeBSD's GNOME) is a great choice. It is quite a simplistic Terminal Emulator with all the basics that you'd expect such as Tabs, Search and keybind assingments as well as good choice in colour changing.
+Firstly, GNOME Terminal, included by default with GNOME based distros such as Ubuntu, Pop!\_OS, and Fedora (and even on FreeBSD's GNOME) is a great choice. It is quite a simplistic Terminal Emulator with all the basics that you'd expect such as Tabs, Search and key bind assignments as well as good choice in colour changing.
 I would recommend checking out this project; https://gogh-co.github.io/Gogh/ which includes most of the same colour schemes as the other, macos-terminal-themes repository but also support a variety of Linux terminal emulators such as GNOME Terminal, Pantheon Terminal, Tilix or XFCE4 Terminal, and it also supports iTerm2 on macOS.
 
 Alacritty is also available on Linux (and FreeBSD) with much of the same features. I have my own alacritty.yml file on my Github repository; https://github.com/Arjdroid/Terminal-Custom-Configurator which has my preferred colour scheme and configurations although they probably may not be to your liking. I would suggest using the official [Alacritty documentation](https://github.com/alacritty/alacritty/blob/master/docs/features.md) and also their sample [alacritty.yml](https://github.com/alacritty/alacritty/blob/master/alacritty.yml) file which has a guide on how to edit it to your preferences.

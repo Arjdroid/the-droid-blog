@@ -22,13 +22,13 @@ image = "raspberrypi4nas.jpg"
 ## Introduction
 
 So, this project all started when my old faithful Windows PC started giving up so I had to temporarily work from my Macbook.
-It was fine for the most part except that I didn't have access to most of the files on my 2 Terrabyte hard drive, that was a real problem because those files would've saved me a lot of time...
+It was fine for the most part except that I didn't have access to most of the files on my 2 Terabyte hard drive, that was a real problem because those files would've saved me a lot of time...
 
 So, my father and I decided to setup a N.A.S!
 
 Easy right? Not really...
 
-There are a lot of options in terms of N.A.S storage devices, you could buy one of those pre-configured N.A.S boxes with their propreitary software and hardware which, if they break, you're out of luck, they're also often times really expensive!
+There are a lot of options in terms of N.A.S storage devices, you could buy one of those pre-configured N.A.S boxes with their proprietary software and hardware which, if they break, you're out of luck, they're also often times really expensive!
 So, what better alternative to closed sources and proprietary hardware than to use open source!
 Enter: Raspberry Pi; a tiny credit card sized fully functioning computer that is great for D.I.Y projects.
 So it was decided that the Raspberry Pi4 would be the brains of the operation, N.A.S operation, at least at this small scale, isn't a really compute heavy process so we decreed that a 2GB Model of the Raspberry Pi4 would be sufficient for the task.
@@ -99,7 +99,7 @@ In the sample partition I gave was `/dev/sda1`, it is the only partition in the 
 
 This is the volume that you will be mounting using as the 'drive'.
 
-### Incase Your Drive Is Un-Initialised (Doesn't Have Any Partitions / Volumes) OR You Want To Start Off Fresh
+### In case Your Drive Is Un-Initialised (Doesn't Have Any Partitions / Volumes) OR You Want To Start Off Fresh
 > Run the partition editor for that drive;
 >
 > ```bash
@@ -161,7 +161,7 @@ sudo fdisk -l
 
 Great! Now you've mounted your drive!
 
-Incase you need to unmount the drive (if you're disconnecting the cable, PLEASE unmount before doing so.)
+In case you need to unmount the drive (if you're disconnecting the cable, PLEASE unmount before doing so.)
 
 ```bash
 sudo umount /dev/sda1
@@ -194,7 +194,7 @@ sudo apt install samba samba-common
 
 If it prompts you for anything, just say 'Yes'
 
-Now you should edit `smb.conf`, the file that contains the samaba server configuration;
+Now you should edit `smb.conf`, the file that contains the samba server configuration;
 
 ```bash
 sudo nano /etc/samba/smb.conf
@@ -213,7 +213,7 @@ directory mask = 0777
 public = yes
 ```
 
-Remember to replace `HDD100G` with the names that you have used. The writeable toggle is pretty self-explanatory, the create and directory mask values are values that allow all smb users to read, modify and delete the files on that drive, if you wish to set a different set of values for the masks, a quick [insert your preffered search engine]() search should help you out, although you should know that these masks should work perfectly fine for you. The public toggle means that in your LAN, the network location will be visible under the Pi's hostname, in this case, raspberrypi.
+Remember to replace `HDD100G` with the names that you have used. The writeable toggle is pretty self-explanatory, the create and directory mask values are values that allow all smb users to read, modify and delete the files on that drive, if you wish to set a different set of values for the masks, a quick [insert your preferred search engine]() search should help you out, although you should know that these masks should work perfectly fine for you. The public toggle means that in your LAN, the network location will be visible under the Pi's hostname, in this case, raspberrypi.
 
 Now, we need to add a password for the current smb share user, in this case, pi. This username and password will allow you to access the smb share files. To add a password to the current user, pi do this;
 
