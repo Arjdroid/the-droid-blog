@@ -1,2 +1,12 @@
 
 public/
+.DS_Store
+content/.DS_Store
+content/post/.DS_Store
+resources/.DS_Store
+resources/_gen/.DS_Store
+resources/_gen/assets/scss/scss/style.scss_170188855d14d903eca10cc8b6dffa74.content
+resources/_gen/assets/scss/scss/style.scss_170188855d14d903eca10cc8b6dffa74.json
+static/.DS_Store
+themes/.DS_Store
+themes/hugo-theme-stack/.DS_Store
