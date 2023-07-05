@@ -34,6 +34,8 @@ I don't want to bore you with the minute-by-minute details so let me just list s
 > * Equipment
 > * Caffeine
 > * Focus on the Timeline
+> * My own project structure
+> * The judging process
 
 ### Preparation
 
