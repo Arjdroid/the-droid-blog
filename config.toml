@@ -53,7 +53,7 @@ DefaultContentLanguage = "en"                   # Theme i18n support
         math = false
         [params.article.license]
             enabled = false
-            default = "Licensed under my ass"
+            default = "Licensed"
 
     [params.comments]
         enabled = false
@@ -65,11 +65,7 @@ DefaultContentLanguage = "en"                   # Theme i18n support
             theme = "preferred-color-scheme"
 
     [params.widgets]
-        enabled = ['archives', 'tag-cloud']
-        [params.widgets.archives]
-            limit = 5
-            ### Archives page relative URL
-            path = "archives"
+        enabled = ['tag-cloud']
         [params.widgets.tagCloud]
             limit = 10
 
