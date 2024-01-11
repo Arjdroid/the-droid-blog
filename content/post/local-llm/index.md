@@ -1,7 +1,7 @@
 +++
 draft = "false"
 author = "Arjdroid"
-title = "Running a Local Large Language Model (AKA Local AI ChatBot) \[PART 1\]"
+title = "Running a Local Large Language Model (AKA Local AI ChatBot) PART ONE"
 date = "2024-01-11"
 description = "This is blog post details my journey in setting up and running an (LLM) large-language-model on my very own computer in order to have my own alternative to ChatGPT"
 tags = [
@@ -11,8 +11,7 @@ tags = [
 ]
 categories = [
     "ai",
-    "technical",
-    "",
+    "technical",]
 series = ["AI"]
 aliases = ["Local-LLM"]
 image = "llama2-on-mac.png"
