@@ -13,11 +13,9 @@ categories = [
 ]
 series = ["Minecraft"]
 aliases = ["Minecraft-Life"]
-image = "minecraft-life.png"
 +++
 
 > Disclaimer, these are quasi philosophical arguments written by a human being without life experience outside of high school. These are not meant to be taken seriously, and are _highly_ subject to change in the future.
-
 
 There is this 'long-proverb?' floating around the internet about a conversation between a fisherman and a businessman about their approaches to life.
 

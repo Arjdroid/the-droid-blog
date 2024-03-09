@@ -14,7 +14,7 @@ categories = [
 ]
 series = ["RaspberryPi"]
 aliases = ["Setting-up-a-pi-nas"]
-image = "raspberrypi4nas.jpg"
+cover = { src = "raspberrypi4nas.jpg", alt = "", caption = "" }
 +++
 
 > **Disclaimer**: If you plan on using this article as a guide for setting up your OWN raspberry pi nas (which I hope you do 😁), **PLEASE** read the entire article before going through with this process (It will help clear any doubts you have as well as ensure that you can go through with this process). Also, do remember that **I AM NOT RESPONSIBLE** for any damage that YOU may cause to yourself or your own hardware including, but not limited to: bricked devices, dead SD cards, thermonuclear war, or you getting fired because the alarm app failed. YOU are choosing to make these modifications, and if you point the finger at me for messing up your hardware, I will laugh at you. All jokes aside though, this process is pretty solid, and shouldn't break anything unless you _seriously_ mess it up.

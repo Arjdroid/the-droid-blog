@@ -14,7 +14,6 @@ categories = [
     "technical",]
 series = ["AI"]
 aliases = ["Local-LLM"]
-image = "llama2-on-mac.png"
 +++
 
 ## Introduction

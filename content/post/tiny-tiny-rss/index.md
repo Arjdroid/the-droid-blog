@@ -16,5 +16,5 @@ categories = [
 ]
 series = ["Networking"]
 aliases = ["Tiny-Tiny-RSS"]
-image = "ttrss.png"
+
 +++

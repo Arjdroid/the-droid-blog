@@ -16,7 +16,7 @@ categories = [
 ]
 series = ["Command-Line"]
 aliases = ["Customise-UNIX-Terminal"]
-image = "myterminal.jpg"
+cover = { src = "myterminal.jpg", alt = "", caption = "" }
 +++
 
 ## Introduction

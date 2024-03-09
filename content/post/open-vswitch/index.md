@@ -16,8 +16,9 @@ categories = [
 ]
 series = ["Virtualization"]
 aliases = ["Open-vSwitch-SPAN"]
-image = "virtual-machine-manager.png"
+
 +++
 
 ## Introduction
+
 Virtual machines are great works of software as they can allow you to run a completely separate operating system inside of its own little hypervisor sandbox.

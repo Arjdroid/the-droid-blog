@@ -16,7 +16,6 @@ categories = [
 ]
 series = ["Networking"]
 aliases = ["SSH-Keys"]
-image = "ssh-key.jpg"
 +++
 
 ## Introduction

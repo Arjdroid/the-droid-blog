@@ -14,7 +14,7 @@ categories = [
 ]
 series = ["RSS Guide"]
 aliases = ["RSS-Guide"]
-image = "P1181064.JPG"
+cover = { src = "P1181064.JPG", alt = "", caption = "" }
 +++
 
 > If you wish to subscribe to my [RSS](https://en.wikipedia.org/wiki/RSS) feed so that you may be alerted to new blog posts quickly, you may enter this as the feed's URL:

@@ -14,8 +14,9 @@ categories = [
 ]
 series = ["Hackathon"]
 aliases = ["participating-in-24hr-hackathon"]
-image = "coverphoto.jpg"
+cover = { src = "coverphoto.jpg", alt = "", caption = "" }
 +++
+
 ## Introduction
 
 A little over a month ago, I decided to participate in an upcoming hackathon. For those not in the know, a [hackathon](https://en.wikipedia.org/wiki/Hackathon), sometimes also called a codefest, is an event where people work in teams to rapidly develop a product within a set time limit. They can come in the form of a competition where the goal is for one team to win, or, when hosted by a company, to complete the implementation of a feature in their product.
@@ -30,10 +31,10 @@ This was going to be the first time I did some 'real' programming; I was very ex
 
 I don't want to bore you with the minute-by-minute details so let me just list some advice I wish I knew beforehand as well as advice I thought would be obvious to others but I guess it was not
 
-> * Preparation
-> * Equipment
-> * Caffeine
-> * Focus on the Timeline
+> - Preparation
+> - Equipment
+> - Caffeine
+> - Focus on the Timeline
 
 ### Preparation
 
@@ -73,7 +74,6 @@ I must've made half a dozen private GitHub repos in that short period of time.
 
 > Practice well and ensure you're thorough with any and all technologies you might use in the hackathon. Mini-projects are great for this as you pick up the exact practical skills you need, without wasting time on the basics.
 
-
 ### Equipment
 
 You can't perform your best if your equipment is holding you back. Although most of this might be completely unnecessary, and definitely _can't compensate for a gap in proficiency_, they definitely do make life easier.
@@ -100,7 +100,7 @@ However, if you were to consume such quantities, I do think that coffee or tea a
 
 ### Focus on the Timeline
 
-This is one mistake I noticed a lot of teams (including my own to some extent) making. Every hackathon is different, but they usually have audits conducted by the organisers / judges at regular intervals where they review your current progress and milestones. 
+This is one mistake I noticed a lot of teams (including my own to some extent) making. Every hackathon is different, but they usually have audits conducted by the organisers / judges at regular intervals where they review your current progress and milestones.
 
 As you start coding, you may realise that your estimates on how long you'd take to implement features may change drastically, sometimes quicker but more often slower than you'd expected. It's essential to be flexible about re-thinking what you can and cannot achieve in your limited time frame. Don't succumb to the [sunk-cost fallacy](https://thedecisionlab.com/biases/the-sunk-cost-fallacy) - pouring more time (& other resources) into a dead-end, even after you know it's a dead, because you've already 'sunk' so much into it.
 

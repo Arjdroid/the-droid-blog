@@ -17,7 +17,7 @@ categories = [
 ]
 series = ["Networking"]
 aliases = ["Minecraft-Server"]
-image = "minecraft-server.png"
+cover = { src = "minecraft-server.png", alt = "", caption = "" }
 +++
 
 > **Disclaimer**: This guide is a general overview, please also do additional research before following. If you plan on using this article as a guide for setting up your OWN Minecraft (Java Edition) server, **PLEASE** read the entire article before going through with this process (It may help clear any doubts you have as well as ensure that you can go through with this process). Also, do remember that **I AM NOT RESPONSIBLE** for any damage that YOU may cause to yourself or your own hardware including, but not limited to: bricked devices, dead SD cards, thermonuclear war, or you getting fired because the alarm app failed. YOU are choosing to make these modifications, and I provide no guarantees of any sort.

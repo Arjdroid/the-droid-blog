@@ -16,7 +16,7 @@ categories = [
 ]
 series = ["Literature"]
 aliases = ["Testing-Page"]
-image = "test-picture.jpg"
+
 +++
 
 ## Introduction
