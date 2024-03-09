@@ -14,7 +14,7 @@ categories = [
 ]
 series = ["Food"]
 aliases = ["Ode-2-lunch"]
-image = "ramenoodles.jpg"
+cover = { src = "ramenoodles.jpg", alt = "", caption = "" }
 +++
 
 Ah, lunch.

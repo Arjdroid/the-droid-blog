@@ -16,7 +16,7 @@ categories = [
 ]
 series = ["Quarantine"]
 aliases = ["Life-quarantine"]
-image = "forestforeground.jpg"
+cover = { src = "forestforeground.jpg", alt = "", caption = "" }
 +++
 
 What a bore, life has become, during these times of quarantine;
@@ -43,7 +43,7 @@ All we can do to abolish the reign of this abominable fiend is to stay home, wea
 
 The continuation of the society of humankind is dependent on scientists developing the vaccine so, may the odds be ever in their favour.
 
->> On a more serious note, please do follow the [W.H.O guidelines](https://www.who.int/health-topics/coronavirus) on the prevention of the spread of [COVID-19](https://duckduckgo.com/?q=covid-19), many, many lives depend on it.
+> > On a more serious note, please do follow the [W.H.O guidelines](https://www.who.int/health-topics/coronavirus) on the prevention of the spread of [COVID-19](https://duckduckgo.com/?q=covid-19), many, many lives depend on it.
 >
 > Thank you for reading!
 

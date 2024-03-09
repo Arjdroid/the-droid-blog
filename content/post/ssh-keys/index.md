@@ -16,7 +16,6 @@ categories = [
 ]
 series = ["Networking"]
 aliases = ["SSH-Keys"]
-image = "ssh-key.jpg"
 +++
 
 ## Introduction
@@ -24,7 +23,9 @@ image = "ssh-key.jpg"
 Remote linux server administration is a task that, in my experience, relies heavily on the use of `ssh` or [Secure Shell Protocol](https://en.wikipedia.org/wiki/Secure_Shell).
 
 I think most people who have used a linux server like the [Raspberry Pi ](https://www.raspberrypi.com/) has used `ssh` in its most basic form:
-```
+
+```bash
 ssh pi@ip.ad.dre.ss
 ```
+
 Such use of the `ssh` command usually prompts the server to request a password from the user in order to authenticate them and allow them to access the server.

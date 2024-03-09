@@ -14,7 +14,7 @@ categories = [
     "technical",]
 series = ["AI"]
 aliases = ["Local-LLM"]
-image = "llama2-on-mac.png"
+cover = { src = "llama2-on-mac.png", alt = "", caption = "" }
 +++
 
 ## Introduction
@@ -31,10 +31,10 @@ However, in today's blog post we're just jumping straight into how we can get st
 
 ## Prerequisites
 
-* A computer running either Linux or macOS (Windows users have other options not covered in this Blog Post)
-* Decent hardware (It says at least 8GB RAM to run the smallest models), but you can also expand by having more RAM, faster CPUs and a discreteGPU
-  * In this post I'm demonstrating it on an M1 MacBook Air, so anything in that ballpark or faster should be good to run the most basic stuff.
-* A lot of storage available, at least 50GB to be comfortable
+- A computer running either Linux or macOS (Windows users have other options not covered in this Blog Post)
+- Decent hardware (It says at least 8GB RAM to run the smallest models), but you can also expand by having more RAM, faster CPUs and a discreteGPU
+  - In this post I'm demonstrating it on an M1 MacBook Air, so anything in that ballpark or faster should be good to run the most basic stuff.
+- A lot of storage available, at least 50GB to be comfortable
 
 > For this demonstration, I am showing `ollama` running on an Apple M1 MacBook Air with an 8 core CPU, 8 core GPU, 16GB RAM and 512GB of Storage.
 >
@@ -42,7 +42,7 @@ However, in today's blog post we're just jumping straight into how we can get st
 
 ## Starting Off
 
-For this project I'm going to be using the [ollama](https://ollama.ai) tool. It makes the whole thing _very_ simple, because it's almost plug and play, while still allowing you to have a lot of control and customisation. 
+For this project I'm going to be using the [ollama](https://ollama.ai) tool. It makes the whole thing _very_ simple, because it's almost plug and play, while still allowing you to have a lot of control and customisation.
 
 It supports GPU acceleration (if you have it), running a local API (so that you can use the model with a GUI interface instead of the command line), etc.
 
@@ -76,20 +76,21 @@ You can check out the [ollama library](https://ollama.ai/library) to see all sor
 
 I pasted all the above contents of the blog post into the llama2 model and asked it to conclude the post, here's what it said:
 
-Running a local LLM can offer several advantages, such as faster response times, greater 
-control over the model's training data, and reduced latency compared to using cloud-based 
-models. By running our own LLMs, we can also explore new use cases and applications that are 
+Running a local LLM can offer several advantages, such as faster response times, greater
+control over the model's training data, and reduced latency compared to using cloud-based
+models. By running our own LLMs, we can also explore new use cases and applications that are
 not yet possible with existing models.
 
 Pretty good!
 
 ## Up Next
+
 Right now, I'm on a delivery of new RAM modules to upgrade my PC so that I can run larger models like `mixtral` and `llama2:70b` as they promise to be a lot more powerful.
 
 Upcoming blog posts in this series will detail the differences between these kinds of models, as well as some more exploration like setting up a nice web ui to interface with them more comfortably and from more devices on the network!
 
 I also want to learn about different kinds of tests they use to evaluate the performance of these models and run them myself to compare the results.
 
->> See you next time
+> > See you next time
 
 ---

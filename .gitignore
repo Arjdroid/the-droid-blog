@@ -1,6 +1,36 @@
+# Hugo
+/public/
+/resources/_gen/
+/hugo_stats.json
+# Dependency directories
+/node_modules/
+/vendor/
+# Sensitive or unnecessary files
+.env
+.DS_Store
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+# Build outputs
+/dist/
+/tmp/
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# Operating System generated files
+ehthumbs.db
+Thumbs.db
+
+.hugo_build.lock
 
 public/
+
 .DS_Store
+
 content/.DS_Store
 content/post/.DS_Store
 resources/.DS_Store
