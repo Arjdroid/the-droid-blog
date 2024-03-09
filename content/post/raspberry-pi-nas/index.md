@@ -17,7 +17,7 @@ aliases = ["Setting-up-a-pi-nas"]
 image = "raspberrypi4nas.jpg"
 +++
 
-> **Disclaimer**: If you plan on using this article as a guide for setting up your OWN raspberry pi nas (which I hope you do 😁), **PLEASE** read the entire article before going through with this process (It will help clear any doubts you have as well as ensure that you can go through with this process). Also, do remember that **I AM NOT RESPONSIBLE** for any damage that YOU may cause to yourself or your own hardware including, but not limited to: bricked devices, dead SD cards, thermonuclear war, or you getting fired because the alarm app failed. YOU are choosing to make these modifications, and if you point the finger at me for messing up your hardware, I will laugh at you. All jokes aside though, this process is pretty solid, and shouldn't break anything unless you *seriously* mess it up.
+> **Disclaimer**: If you plan on using this article as a guide for setting up your OWN raspberry pi nas (which I hope you do 😁), **PLEASE** read the entire article before going through with this process (It will help clear any doubts you have as well as ensure that you can go through with this process). Also, do remember that **I AM NOT RESPONSIBLE** for any damage that YOU may cause to yourself or your own hardware including, but not limited to: bricked devices, dead SD cards, thermonuclear war, or you getting fired because the alarm app failed. YOU are choosing to make these modifications, and if you point the finger at me for messing up your hardware, I will laugh at you. All jokes aside though, this process is pretty solid, and shouldn't break anything unless you _seriously_ mess it up.
 
 ## Introduction
 
@@ -34,9 +34,10 @@ Enter: Raspberry Pi; a tiny credit card sized fully functioning computer that is
 So it was decided that the Raspberry Pi4 would be the brains of the operation, N.A.S operation, at least at this small scale, isn't a really compute heavy process so we decreed that a 2GB Model of the Raspberry Pi4 would be sufficient for the task.
 
 > ### Prerequisites:
-> * A working Raspberry Pi (Any Version), with all of it's required hardware like microSD card, USB power brick, etc.
-> * Some sort of mass storage device (Like an HDD or SSD or USB Flash Drive, etc.)
-> * A working brain
+>
+> - A working Raspberry Pi (Any Version), with all of it's required hardware like microSD card, USB power brick, etc.
+> - Some sort of mass storage device (Like an HDD or SSD or USB Flash Drive, etc.)
+> - A working brain
 
 ## Raspberry Pi Setup
 
@@ -53,7 +54,6 @@ And viola! A pseudo command-line text-based G.U.I appears which allows you to co
 > I highly recommend that you check out **[this](https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up)** article by the raspberrypi foundation about setting up your Pi, it will be greatly helpful!
 
 ## Hard Drive Configuration
-
 
 Now, all we have got to do is connect to it via SSH; (**THIS IS ONLY IF YOU DO NOT HAVE A KEYBOARD AND MOUSE AND MONITOR CONNECTED TO THE PI, IF YOU DO HAVE THEM CONNECTED, SKIP THE SSH STEP, YOU CAN PERFORM ALL YOUR COMMANDS ON THE TERMINAL APP IN THE PI**)
 
@@ -76,6 +76,7 @@ sudo fdisk -l
 ```
 
 The result should be something like this:
+
 ```bash
 Disk /dev/sda: 93.2 GiB, 107374127424 bytes, 123513245 sectors
 Disk model: HDD100G
@@ -100,6 +101,7 @@ In the sample partition I gave was `/dev/sda1`, it is the only partition in the 
 This is the volume that you will be mounting using as the 'drive'.
 
 ### In case Your Drive Is Un-Initialised (Doesn't Have Any Partitions / Volumes) OR You Want To Start Off Fresh
+
 > Run the partition editor for that drive;
 >
 > ```bash
@@ -123,13 +125,13 @@ This is the volume that you will be mounting using as the 'drive'.
 > ```
 >
 > And be on the lookout for a result similar to the one previously mentioned;
+>
 > ```
 > Device    Boot Start           End    Sectors   Size  Id  Type
 > /dev/sda1       2048  107374127424  123513245  93.2G   9  HPFS/NTFS/exFAT
 > ```
 
 ## Mounting The Volume
-
 
 Now that you know the name of the volume that you want to mount, in this case `/dev/sda1`, you're going to want to mount it!
 
@@ -168,7 +170,6 @@ sudo umount /dev/sda1
 ```
 
 ## Setting Up The SMBD (samba share) Server
-
 
 An SMBD (samba share) server allows file sharing because it appears as a network drive which can be accessed by any device on the network that is permitted to access it.
 

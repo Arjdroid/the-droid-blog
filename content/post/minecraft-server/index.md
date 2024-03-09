@@ -35,29 +35,31 @@ There are a lot of different Minecraft server hosting options, some even being f
 I wanted a better experience, with more fine-tuned control over the settings and better server performance. Although, this is much more advanced than using a paid, dedicated Minecraft hosting service.
 
 ## Prerequisites
- * A usable server (basically any computer, from a desktop to a laptop to a Raspberry Pi, a [Virtual Machine](https://en.wikipedia.org/wiki/Virtual_machine), or a cloud server on something like *Google Cloud Platform*)
- * Decent Specifications (to handle around 5 simultaneous players):
-   * At least a dual core 64bit processor (any modern Intel Core CPU or AMD Ryzen CPU), or a Raspberry 4 (I'm not sure how well a 3 would hold up)
-   * As much RAM as possible, at least 4GB, more is preferred
-   * At LEAST 8GB of *free storage*
- * Any Linux distro (Ubuntu Server is very usable or Raspberry Pi OS Lite if you're on a Pi)
- * A valid Minecraft Java Edition Licence (to be able to play on your server!)
- * Being comfortable with a Linux environment and having basic troubleshooting capability and computer knowledge
+
+- A usable server (basically any computer, from a desktop to a laptop to a Raspberry Pi, a [Virtual Machine](https://en.wikipedia.org/wiki/Virtual_machine), or a cloud server on something like _Google Cloud Platform_)
+- Decent Specifications (to handle around 5 simultaneous players):
+  - At least a dual core 64bit processor (any modern Intel Core CPU or AMD Ryzen CPU), or a Raspberry 4 (I'm not sure how well a 3 would hold up)
+  - As much RAM as possible, at least 4GB, more is preferred
+  - At LEAST 8GB of _free storage_
+- Any Linux distro (Ubuntu Server is very usable or Raspberry Pi OS Lite if you're on a Pi)
+- A valid Minecraft Java Edition Licence (to be able to play on your server!)
+- Being comfortable with a Linux environment and having basic troubleshooting capability and computer knowledge
 
 I myself will be using a dual core (multi-threaded) amd64 virtual machine with 8GB of RAM assigned to it, running the server Linux distro Ubuntu. (If you use a distribution such as Arch Linux or Fedora or CentOS or OpenSUSE, the package commands / availability will be quite different for you although you already know that)
 
 ### This guide assumes a few more things
-* That you have already installed and setup your Linux distribution upon your server, whatever it may be
-* That your server is connected to the internet and up-to-date
-* That you have access to its command line (either via SSH or via a keyboard + monitor)
 
- > **If you have not set up a Linux distribution on your server yet, you will need to do so**
- >
- > Usually it is a very straightforward installation process. I would recommend using the linux distribution Ubuntu Server as it is quite popular and has good support from forums to help with issues.
- >
- > You can follow Ubuntu's official installation documentation at https://ubuntu.com/tutorials/install-ubuntu-server
- >
- > I am using **Ubuntu 20.04 LTS**. You may choose to use Ubuntu 22.04 LTS which is newer although, at the time of writing I have found there may be some software that is not yet updated to be fully compatible with it but it is 75% likely to have been resolved by now.
+- That you have already installed and setup your Linux distribution upon your server, whatever it may be
+- That your server is connected to the internet and up-to-date
+- That you have access to its command line (either via SSH or via a keyboard + monitor)
+
+> **If you have not set up a Linux distribution on your server yet, you will need to do so**
+>
+> Usually it is a very straightforward installation process. I would recommend using the linux distribution Ubuntu Server as it is quite popular and has good support from forums to help with issues.
+>
+> You can follow Ubuntu's official installation documentation at https://ubuntu.com/tutorials/install-ubuntu-server
+>
+> I am using **Ubuntu 20.04 LTS**. You may choose to use Ubuntu 22.04 LTS which is newer although, at the time of writing I have found there may be some software that is not yet updated to be fully compatible with it but it is 75% likely to have been resolved by now.
 
 ## Docker Engine Setup
 
@@ -78,16 +80,18 @@ Most serious and worthwhile server applications these days are available by thei
 Installing Docker is very simple, simply follow the instructions laid out at [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/). It has instructions for all certified compatible systems. Just look at the table they give, and click on the tick-mark ✔️ which corresponds to your system. For my example, I'd click on the tick for "Ubuntu x86_64/amd64".
 
 > I am including the instructions for my specific configuration (Ubuntu 20.04 LTS on amd64) . It may differ from the instructions you require, so please check the [official documentation](https://docs.docker.com/engine/install/) to be sure. As always, read instructions CAREFULLY before following!
+>
 > #### Sidenote: Docker officially support use on the following Linux Distributions
->  * Ubuntu / Debian (x86_64, arm64)
->  * Fedora / RHEL (x86_64, arm64)
->  * Raspbian (arm32-bit, and the new arm64 OS as well)
->  * CentOS (x86_64, arm64)
->  * If you are using Arch Linux, you should follow the [Arch Wiki guide to using Docker](https://wiki.archlinux.org/title/Docker) as it is not officially supported by Docker, but community maintained.
+>
+> - Ubuntu / Debian (x86_64, arm64)
+> - Fedora / RHEL (x86_64, arm64)
+> - Raspbian (arm32-bit, and the new arm64 OS as well)
+> - CentOS (x86_64, arm64)
+> - If you are using Arch Linux, you should follow the [Arch Wiki guide to using Docker](https://wiki.archlinux.org/title/Docker) as it is not officially supported by Docker, but community maintained.
 
 The button leads to a webpage containing all necessary instructions such as uninstalling any old versions present:
 
-```sh
+```bash
 sudo a remove docker docker-engine docker.io containerd runc
 ```
 
@@ -99,49 +103,49 @@ To copy commands quickly you can double click the command to select the full lin
 
 First we must update our package repositories:
 
-```sh
+```bash
 sudo apt update
 ```
 
 Then install some dependencies required for adding Docker's repositories.
 
-```sh
+```bash
 sudo apt install ca-certificates curl gnupg lsb-release
 ```
 
 After that you have to actually add Docker's official GPG key (used to verify Docker's repository) to Ubuntu Server's keyring:
 
-```sh
+```bash
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 ```
 
-Then you need to choose which Docker repository you are going to add, in this case I'm choosing __stable__ which is almost always the desired option.
+Then you need to choose which Docker repository you are going to add, in this case I'm choosing **stable** which is almost always the desired option.
 
-```sh
+```bash
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 
 Then, to actually install the latest version of Docker Engine, you need to update your repositories:
 
-```sh
+```bash
 sudo apt update
 ```
 
 Then install the following packages:
 
-```sh
+```bash
 sudo apt install docker-ce docker-ce-cli containerd.io
 ```
 
-To verify that Docker Engine is installed correctly, run the __hello-world__ image:
+To verify that Docker Engine is installed correctly, run the **hello-world** image:
 
-```sh
+```bash
 sudo docker run hello-world
 ```
 
 It should give an output similar to this:
 
-```sh
+```bash
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
 
@@ -170,14 +174,17 @@ You can try out its advise to run a proper Ubuntu container as well with the com
 >
 > You can delete old containers and images that you are no longer using via the following commands:
 > To delete an old container you must first know the name or the id of the container
-> ```sh
+>
+> ```bash
 > $ sudo docker container ls -a
 > CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS   NAMES
 > aaa7aab55ac1   hello-world   "/hello"   5 minutes ago   Exited (0) 5 minutes ago           eager_haibt
 > 5f4294d34628   ubuntu        "bash"     4 minutes ago   Exited (0) 4 minutes ago           modest_banzai
 > ```
+>
 > Suppose I want to delete the ubuntu container for whatever reason, I simply have to execute the following command:
-> ```sh
+>
+> ```bash
 > sudo docker rmi aaa7aab55ac1
 > ```
 >
@@ -185,9 +192,11 @@ You can try out its advise to run a proper Ubuntu container as well with the com
 > For more information you should check out the Docker documentation at https://docs.docker.com/
 
 You should also install the `docker-compose-plugin` in case it was not already installed:
-```sh
+
+```bash
 sudo apt install docker-compose-plugin
 ```
+
 This is an optional add-on for Docker which can again improve how well your containers are organised and I am covering it in the next section.
 
 ## Minecraft Server Docker Container Setup
@@ -195,49 +204,63 @@ This is an optional add-on for Docker which can again improve how well your cont
 Now that we have Docker up and running, we can explore different options as to how we go about setting up the Minecraft server Docker container.
 
 I have found that the project at https://github.com/itzg/docker-minecraft-server is a great starting place and it is what I will be using in this guide.
+
 > You may want to use a different docker container such as https://github.com/itzg/docker-minecraft-bedrock-server in case you and your friends play on Minecraft: Bedrock Edition (Windows 10 Edition, and all the Mobile / Console editions are bedrock) although they won't be addressed much here.
 
 The first thing you may want to do is to download the latest image of itzg/minecraft-server [(available from Docker Hub)](https://hub.docker.com/r/itzg/minecraft-server) by doing
-```sh
+
+```bash
 sudo docker pull itzg/minecraft-server:latest
 ```
+
 Then you want to create a folder which will contain all of the configuration files specific to your server. Make sure to remember (write down / document) where you keep this folder as it is important for actually running the Minecraft server.
 
 Usually it is a good idea to keep that folder in your home directory which is at `/home/username` depending on your username. A universal shortcut for your current user's home directory is `~` and when you login to your user you are by default, in your home directory.
 
 Check your current directory (on Ubuntu's bash cmd your directory is listed next to your username but you can use the `pwd` command to see it as well)
-```sh
+
+```bash
 user@minecraft-server:~/$ pwd
 /home/user/
 ```
+
 Create your folder
-```sh
+
+```bash
 mkdir minecraft-server
 ```
+
 Check that the folder exists with the `ls` command
-```sh
+
+```bash
 user@minecraft-server:~/$ ls
 minecraft-server
 ```
+
 Then you can enter the directory
-```sh
+
+```bash
 cd ./minecraft-server/
 ```
 
 There are two ways (that I know of) to provision a docker container.
-1) Use a command with arguments for each configuration of the container
-2) Use a `docker-compose.yml` file
+
+1. Use a command with arguments for each configuration of the container
+2. Use a `docker-compose.yml` file
 
 There are advantages and disadvantages to both.
 
 For example, commands are very quick to use and are good for running one-off, disposable docker containers to test things. One example is
-```sh
+
+```bash
 sudo docker run hello-world
 ```
+
 It is a short, straightforward command to test the hello-world container. You can add arguments to do things like attach network ports and data volumes and specify executing specific commands. You can also put all those things in a shell script such as `docker-hello-world.sh` which will contain the command along with its arguments so that you can run it with just one executable.
 
 The main drawback however, at least in my opinion, is readability and editability. It can be hard to easily dissect and understand a large, single command script with many arguments. Even a well made command like the one below still needs to use backslashes which could be easily messed up.
-```sh
+
+```bash
 docker run -d \
  --name jellyfin \
  --user uid:gid \
@@ -252,6 +275,7 @@ docker run -d \
 A much more elegant solution, in my opinion, is [Docker Compose](https://docs.docker.com/compose/) which allows you to put all of your arguments into a `docker-compose.yml` file (using the [YAML](https://en.wikipedia.org/wiki/YAML) file format which can be edited in plain text editors).
 
 Here is a `docker-compose.yml` file which does the same as the script above (running a basic [Jellyfin](https://jellyfin.org/) Docker container which is a self-hosted Streaming Service)
+
 ```yml
 version: "3.5"
 services:
@@ -270,11 +294,13 @@ services:
     environment:
       - JELLYFIN_PublishedServerUrl=http://example.com
 ```
+
 Sure, the file is bigger, but it is easier now for a human to read it and understand what it does. You can edit different options more confidently as the syntax is also more obvious.
 
 I will be using Docker Compose for the Minecraft server.
 
 The `docker-compose.yml` file for the default configuration of the server is
+
 ```yml
 version: "3"
 
@@ -293,28 +319,45 @@ services:
 This is just the base, and we can add a lot more arguments which can improve the server.
 
 #### Add a Message Of The Day (MOTD)
+
 This shows up as the server description in the Minecraft Client's server view so it's a good thing to have to easily identify your server.
+
 #### Server Icon (ICON)
+
 This is a URL to an icon image, it can be whatever you choose as it will automatically convert the image to the right size and format to be shown in the Minecraft Client.
 
 ![An Image of The Minecraft Client](./minecraft-client.png "An Image of The Minecraft Client")
 
 #### Timezone (TZ)
+
 This is the timezone of your server which is applied to the time that is used in your logs, make sure that your host system's timezone is the same as that of the Docker container.
+
 #### Whitelist Players (WHITELIST)
+
 This is a pretty important security feature, you can make a list of players who are allowed to join your server which can prevent random unknown griefers from coming and destroying your server. It also makes it easy to quickly add and remove allowed players.
+
 #### Administrator Players (OPS)
+
 This is a list of players who have admin powers over the server, this means that they can have cheats and can ban or kick players.
+
 #### Difficulty (DIFFICULTY)
+
 You can hard code the Difficulty of the server, I would probably set it to hard so that you can infect / cure zombie villagers with a 100% success rate but you can choose whatever difficulty (peaceful, easy, normal, hard) you like.
+
 #### Maximum Number of Players (MAX_PLAYERS)
+
 You can set this to ensure your server / network connection is not overloaded with too many players, by default the number is 20 although that may be too many for your server to handle.
+
 #### View Distance (VIEW_DISTANCE)
+
 This affects the maximum render distance a client can have, higher numbers are going to be very, very intensive, especially if there are many players. This setting depends on your specs, but you should test different render distances at increments of 4. The max I'd say a client would reasonably want is 20 and see if the server struggles. If it does, go down to 16, then 12, then 8 and vice versa.
+
 #### Player Vs Player Combat (PVP)
+
 PVP is enabled by default, this may be a bit chaotic or against the values of your Minecraft server so you can disable it.
 
 ### Data Volumes
+
 Docker has a feature in which containers can store data in a "Volume". This volume is a part of the host's native file system. In the example below, there is a volume attached called `minecraft-data`. This will create a directory called `minecraft-data` under the directory in which the `docker-compose.yml` file is stored. In my case the path of the directory will be `~/minecraft-server/minecraft-data`. This same directory is perceived to be the `/data` directory to the image inside of the Docker container.
 
 The purpose of doing this is so that I can easily access the data of the minecraft-server in that directory natively from my host OS so that I can run regular backups and do other things. It allows me to easily extract data like the actual Minecraft world of the server and transfer it to a new docker container. It is also useful when updating the Docker image of itzg/minecraft-server so that the world is persistent throughout newer versions of the image.
@@ -322,7 +365,9 @@ The purpose of doing this is so that I can easily access the data of the minecra
 A deeper and easier to understand explanation is available at https://docs.docker.com/storage/volumes/
 
 ### Final `docker-compose.yml` File
+
 Here is what a `docker-compose.yml` file with all of these options configured can look like
+
 ```yml
 version: "3"
 
@@ -353,7 +398,8 @@ services:
 There are other options available as well but these are the ones I thought most important, you can check out the full list on the docker-minecraft-server github page https://github.com/itzg/docker-minecraft-server and scroll down.
 
 You can test the configuration by running the docker container (while in the same directory as the `docker-compose.yml` file.
-```
+
+```bash
 user@minecraft-server:~/minecraft-server$ sudo docker compose up
 ```
 
@@ -376,9 +422,10 @@ There is an additional step required to actually make your Minecraft Server acce
 This will allow people from outside your network to access the specific port 25565 on your local minecraft server.
 
 ### Keep in mind that this can also open up your network to attacks from outside
+
 **You do this at your own risk and this is not recommended to inexperienced network administrators.**
 
-You need to know what model is your router and look up the instructions to set up port forwarding on that specific router. The port you are forwarding is 25565 and the IP address will be the local IP address of the Minecraft server. 
+You need to know what model is your router and look up the instructions to set up port forwarding on that specific router. The port you are forwarding is 25565 and the IP address will be the local IP address of the Minecraft server.
 
 More detailed instructions will require knowledge of your specific setup. I trust that your abilities to use a search engine will suffice in getting you there.
 

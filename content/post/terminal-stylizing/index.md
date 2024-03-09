@@ -28,8 +28,9 @@ A customised terminal is unique and brings the personality of the user into the 
 There are many ways to go about customising your terminal, from using automated shell scripts all the way to hand editing your `.bashrc` or `.zshrc` files, all depending upon on how much time you want to spend on such a task.
 
 > ### Prerequisites:
-> * A UNIX-like terminal interface either on macOS or Linux (no PowerShell but WSL does count as Linux, I'm also not supporting BSD at this time)
-> * Some knowledge on working with a terminal interface
+>
+> - A UNIX-like terminal interface either on macOS or Linux (no PowerShell but WSL does count as Linux, I'm also not supporting BSD at this time)
+> - Some knowledge on working with a terminal interface
 
 ## Terminal Emulator
 
@@ -49,7 +50,7 @@ To install Alacritty you have to go about it via a slightly more "complicated" p
 
 Installing alacritty using the [brew](https://brew.sh/) package manager, in my opinion one of the best package managers for macOS although that is a topic for another time.
 
-```
+```bash
 brew install --cask alacritty --no-quarantine
 ```
 
@@ -84,13 +85,13 @@ You can click the install button on the Zsh homepage to see the command needed t
 
 curl:
 
-```
+```bash
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
 wget:
 
-```
+```bash
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 ```
 
@@ -106,13 +107,13 @@ For example, one of my favourite plugins is [zsh-syntax-highlighting](https://gi
 
 Basically, you clone the plugin's repository into your ohmyzsh plugins directory:
 
-```
+```bash
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
 Then you must append the plugin name, in this case `zsh-syntax-highlighting` to your plugins list in your ~/.zshrc file so it might be like
 
-```
+```bash
 plugins=(git zsh-syntax-highlighting something-else)
 ```
 

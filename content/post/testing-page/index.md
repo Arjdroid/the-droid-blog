@@ -27,7 +27,7 @@ Over half a year, in fact!
 
 It just spiraled into an unending spiral of 'I'll do it next week's that cascaded into the oblivion that is the void of the land of the forgotten or, as some of you might be familiar with ;
 
-``` bash
+```bash
 /dev/null
 ```
 

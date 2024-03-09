@@ -59,3 +59,11 @@ target = "assets/tabler-icons"
 # Add hugo_stats.json to Hugo's server watcher
 source = "hugo_stats.json"
 target = "assets/watching/hugo_stats.json"
+
+[params]
+themeContrast = "soft"
+themeColor = "blue"
+
+[params.prism]
+languages = ["markup", "css", "clike", "javascript", "bash", "xml-doc"]
+plugins = ["normalize-whitespace", "toolbar", "copy-to-clipboard"]
