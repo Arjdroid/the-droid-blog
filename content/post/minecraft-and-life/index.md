@@ -1,5 +1,5 @@
 +++
-draft = "false"
+draft = "true"
 author = "Arjdroid"
 title = "Minecraft and a possible analogy for life"
 date = "2024-01-17"
