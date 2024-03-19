@@ -13,6 +13,7 @@ categories = [
 ]
 series = ["Journal"]
 aliases = ["Minecraft-And-Life"]
+cover = { src = "minecraft-life.png", alt = "A screenshot from me performing fishing in the video game Minecraft", caption = "" }
 +++
 
 > First off a little disclaimer: These are quasi-philosophical thoughts, but mostly incoherent ramblings written by a human being without much life experience. These are not meant to be taken seriously, and are subject to change in the future.
