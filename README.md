@@ -1,41 +1,26 @@
 # the_droid_blog-source_files
 
-> A repository that contains the source files for [my blog website](https://arjdroid.github.io), built with [hugo](https://gohugo.io).
+Currently, my blog is just a small folder of thoughts, though over time it may mature into something more.
 
-<p align="center">
-<img src="./Droid_Blog-Comp_Light-Shadowed.png" alt="Screenshot">
-</p>
+This repository is meant to contain the source files used to construct my [blog website](https://arjdroid.github.io). The site is built with [hugo](https://gohugo.io), a tool that takes Markdown files as input and uses them, along side a theme, to generate multiple static html pages within a master directory that can be used as a static website.
 
-<p align="center"><i>A screenshot of the website's landing page in light mode when viewed on a 4:3 screen horizontally.</i></p>
+## Choice of Architecture
 
-## Overview
+These static pages, generated with the [hugo engine](https://gohugo.io), are very flexible in terms of their appearance and the devices which they can be viewed upon. The specific hugo theme which I have used, is [stack](https://themes.gohugo.io/hugo-theme-stack/). I plan to use a more bespoke and tenable solution in the future as relying on others' themes is not optimal for the health of the website, and disallows me from easily implementing desired features and design changes.
 
-This repository is a repository meant to contain the source files that I will use in order to construct [my blog website](https://arjdroid.github.io). My website is constructed using the [hugo website construction engine](https://gohugo.io), a tool that takes .md files as input and uses them, along side a theme, to generate multiple static html pages within a master directory that can be used as a static website.
-  
-## Flexibility
+## Usage
 
-The static pages built with the [hugo engine](https://gohugo.io) are very flexible in terms of their appearance and the devices which they can be viewed upon. The specific hugo theme which I have used, [stack](https://themes.gohugo.io/hugo-theme-stack/), is a theme which contains [javascript](https://www.w3schools.com/js/DEFAULT.asp) code that allows the whole site to switch automatically between dark mode and light mode, based on the viewer device's colour theme of choice. The site can adapt and change its size in order to be suitable to be viewed upon almost any device.
+```bash
+# clone repository
+git clone https://github.com/Arjdroid/the-droid-blog
 
-### Screenshots
+# move to repository
+cd the-droid-blog/
 
-<p align="center">
-<img align="center" src="./Droid_Blog-Phone_Light-Shadowed.png" alt="Screenshot">
-</p>
+# start dev server
+hugo server
+```
 
-<p align="center"><i>A screenshot of the website's landing page in light mode, viewed on a phone.</i></p>
+## Publishing Changes
 
-<br>
-
-<p align="center">
-<img align="center" src="./Droid_Blog-Phone_Dark-Shadowed.png" alt="Screenshot">
-</p>
-
-<p align="center"><i>A screenshot of the website's landing page in dark mode, viewed on a phone.</i></p>
-
-<br>
-
-<p align="center">
-<img src="./Droid_Blog-Comp_Dark-Shadowed.png" alt="Screenshot">
-</p>
-
-<p align="center"><i>A screenshot of the website's landing page in dark mode when viewed on a 4:3 screen horizontally.</i></p>
+There is a github actions workflow that deploys this site onto github-pages after generating the static site files with a Hugo instance.
