@@ -1,5 +1,5 @@
 +++
-draft = "false"
+draft = "true"
 author = "Arjdroid"
 title = "Running a Local Large Language Model (AKA Local AI ChatBot) PART TWO"
 date = "2024-02-25"
