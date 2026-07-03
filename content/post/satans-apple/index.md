@@ -5,10 +5,11 @@ title = "Just Say No? (To Satan's Apple)"
 date = "2026-03-21"
 description = "Decision Theory might be NP-Hard"
 tags = [
-    "philosophy",
+    "decision-theory",
+    "philosophy"
 ]
 categories = [
-    "philosophy",
+    "philosophy"
 ]
 series = ["philosophy"]
 aliases = ["satans-apple"]
